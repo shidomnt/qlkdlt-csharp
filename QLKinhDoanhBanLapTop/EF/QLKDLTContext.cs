@@ -17,9 +17,5 @@ namespace QLKinhDoanhBanLapTop.EF
 
         public DbSet<PhThuChi> PhThuChi { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string configuration = new 
-        }
     }
 }

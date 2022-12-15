@@ -19,9 +19,18 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Range(0, int.MaxValue, ErrorMessage = "So tien phai lon hon 0")]
         public int SoTien { get; set; }
 
+        [Column(TypeName = "varchar(1)")]
+        public LoaiPh LoaiPhieu { get; set; }
+
         public KhachHang KhachHangNavigator { get; set; } = null!;
 
         [ForeignKey(nameof(KhachHangNavigator))]
         public string MaKH { get; set; } = null!;
+    }
+
+    enum LoaiPh
+    {
+        Thu = 'T',
+        Chi = 'C'
     }
 }

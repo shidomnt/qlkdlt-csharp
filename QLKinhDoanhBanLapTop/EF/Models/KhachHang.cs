@@ -29,9 +29,9 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [MaxLength(12, ErrorMessage = "So dien thoai qua dai! Toi da 12 ki tu")]
         public string SoDt { get; set; } = null!;
 
-        public List<HoaDon> HoaDons { get; set; } = new List<HoaDon>();
+        public virtual List<HoaDon> HoaDons { get; set; } = new List<HoaDon>();
 
-        public List<PhThuChi> PhThuChis { get; set; } = new List<PhThuChi>();
+        public virtual List<PhThuChi> PhThuChis { get; set; } = new List<PhThuChi>();
 
     }
 }

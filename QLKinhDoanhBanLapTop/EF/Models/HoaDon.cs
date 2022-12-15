@@ -21,6 +21,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Required]
         public int SoTienTT { get; set; }
 
+        [Column(TypeName = "varchar(1)")]
         [Required]
         public LoaiHD LoaiHD { get; set; } = LoaiHD.Xuat;
 
@@ -30,7 +31,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Column(TypeName = "varchar(20)")]
         public string MaKH { get; set; } = null!;
 
-        public List<ChiTietHD> ChiTietHDs { get; set; } = new List<ChiTietHD>();
+        public virtual List<ChiTietHD> ChiTietHDs { get; set; } = new List<ChiTietHD>();
 
     }
     enum LoaiHD

@@ -4,17 +4,17 @@ using QLKinhDoanhBanLapTop.Forms;
 
 namespace QLKinhDoanhBanLapTop
 {
-    public partial class QLKD : Form
+    internal partial class QLKD : Form
     {
         private QLKDLTContext Context { get; set; }
 
         private QLKH? Form_QLKH { get; set; } = null;
 
-        public QLKD()
+        public QLKD(QLKDLTContext context)
         {
             InitializeComponent();
 
-            Context = new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
+            Context = context;
 
             Context.SavedChanges += new EventHandler<SavedChangesEventArgs>((sender, e) =>
             {

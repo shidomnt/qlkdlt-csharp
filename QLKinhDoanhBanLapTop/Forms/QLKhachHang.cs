@@ -5,7 +5,7 @@ using System.Data;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
-    internal partial class QLKH : Form
+    internal partial class QLKhachHang : Form
     {
         public event EventHandler? SelectedKhachHangChanged;
 
@@ -27,7 +27,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private EventHandler<SavedChangesEventArgs>? SavedChangeEventHandler { get; set; }
 
-        public QLKH(QLKDLTContext context)
+        public QLKhachHang(QLKDLTContext context)
         {
             InitializeComponent();
             Context = context;
@@ -148,7 +148,6 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)
             => Context.SavedChanges -= SavedChangeEventHandler;
-
 
     }
 }

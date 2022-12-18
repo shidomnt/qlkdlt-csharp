@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using QLKinhDoanhBanLapTop.EF;
+using System.Data.Common;
 using System.Reflection;
 
 namespace QLKinhDoanhBanLapTop
@@ -18,74 +19,36 @@ namespace QLKinhDoanhBanLapTop
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //var configuration = new ConfigurationBuilder()
-            //    .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!)
-            //    .AddJsonFile("appsettings.json").Build();
-
-            //var connectionString = configuration["ConnectionStrings:DefaultConnection"];
-
-            //var databaseName = connectionString?.Split(';')[1];
-
-
-            //SqlConnection connection = new(connectionString);
-
-            //if (!IsDatabaseExists(connection))
-            //{
-            //    CreateDatabase(connection, databaseName);
-            //}
+            if (!IsServerConnected())
+            {
+                MessageBox.Show("Khong the ket noi Database", "Loi ket noi database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             var context = new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
 
             context.Database.Migrate();
 
-            Application.Run(new QLKD(context));
+            Application.Run(new FormMDI(context));
         }
-        static bool IsDatabaseExists(SqlConnection connection)
+
+        public static bool IsServerConnected()
         {
-            string sqlQuery =
-                @$"SELECT database_id 
-                FROM sys.databases 
-                WHERE Name = 'master'";
-            bool result = false;
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!)
+                .AddJsonFile("appsettings.json").Build();
+
+            using var l_oConnection = new SqlConnection(configuration["ConnectionStrings:DefaultConnection"]);
             try
             {
-                var command = connection.CreateCommand();
-                command.CommandText = sqlQuery;
-                connection.Open();
-                var resultObj = command.ExecuteScalar();
-                int databaseID = 0;
-
-                if (resultObj != null)
-                {
-                    int.TryParse(resultObj.ToString(), out databaseID);
-                }
-
-                connection.Close();
-
-                result = (databaseID > 0);
-            } catch (Exception)
-            {
+                l_oConnection.Open();
+                return true;
             }
-            return result;
+            catch (SqlException)
+            {
+                return false;
+            }
         }
 
-        static void CreateDatabase(SqlConnection connection, string? databaseName = "QLKDBLT")
-        {
-            string sqlQuery =
-                @$"CREATE DATABASE {databaseName}";
-            var command = connection.CreateCommand();
-            command.CommandText = sqlQuery;
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-                
-            } catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Lỗi khi tạo Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-
-        }
     }
 }

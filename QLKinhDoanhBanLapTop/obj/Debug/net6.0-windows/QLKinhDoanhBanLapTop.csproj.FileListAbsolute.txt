@@ -65,5 +65,8 @@ E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0
 E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.genruntimeconfig.cache
 E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\ref\QLKinhDoanhBanLapTop.dll
 E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\bin\Debug\net6.0-windows\appsettings.json
-E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.QLKH.resources
-E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.QLKD.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.FormMDI.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.QLHang.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.QLHoaDon.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.QLKhachHang.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.QLPhieuThuChi.resources

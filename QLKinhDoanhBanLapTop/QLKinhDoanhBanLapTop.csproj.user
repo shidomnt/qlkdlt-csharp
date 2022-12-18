@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Forms\QLKH.cs">
+    <Compile Update="Forms\QLHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="QLKD.cs">
+    <Compile Update="Forms\QLHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\QLKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\QLPhieuThuChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormMDI.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

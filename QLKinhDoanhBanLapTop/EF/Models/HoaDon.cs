@@ -27,6 +27,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
 
         public KhachHang KhachHangNavigator { get; set; } = null!;
 
+        [Required]
         [ForeignKey(nameof(KhachHangNavigator))]
         [Column(TypeName = "varchar(20)")]
         public string MaKH { get; set; } = null!;

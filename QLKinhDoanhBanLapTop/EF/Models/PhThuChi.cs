@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLKinhDoanhBanLapTop.EF.Models
 {
@@ -14,17 +10,32 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SoPhieu { get; set; }
 
+        [Required]
         public DateTime Ngay { get; set; } = DateTime.Now;
 
+        [Required]
         [Range(0, int.MaxValue, ErrorMessage = "So tien phai lon hon 0")]
         public int SoTien { get; set; }
 
-        [EnumDataType(typeof(LoaiPh))]
-        [Column(TypeName = "varchar(1)")]
-        public LoaiPh LoaiPhieu { get; set; }
+        [Browsable(false)]
+        [Required]
+        [Column("LoaiPhieu", TypeName = "varchar(1)")]
+        public char LoaiPhieuId { get; set; }
 
+        [NotMapped]
+        public virtual LoaiPh LoaiPhieu
+        {
+            get
+            {
+                return (LoaiPh)LoaiPhieuId;
+            }
+            set { LoaiPhieuId = (char)value; }
+        }
+
+        [Browsable(false)]
         public KhachHang KhachHangNavigator { get; set; } = null!;
 
+        [Required]
         [ForeignKey(nameof(KhachHangNavigator))]
         public string MaKH { get; set; } = null!;
     }

@@ -169,13 +169,21 @@ namespace QLKinhDoanhBanLapTop.Forms
         private void ExtractFromSelectedPhThuChi()
         {
 
-
-            TextBox_SoPhieu.Text = SelectedPhThuChi?.SoPhieu.ToString();
-            DatePicker_Ngay.Value = SelectedPhThuChi?.Ngay ?? DateTime.Now;
-            TextBox_SoTien.Text = SelectedPhThuChi?.SoTien.ToString();
-            ComboBox_LoaiPhieu.SelectedValue = SelectedPhThuChi?.LoaiPhieu ?? LoaiPh.Chi;
-            ComboBox_MaKH.SelectedValue = SelectedPhThuChi?.MaKH;
-
+            try
+            {
+                var selectedPhThuChi_MaKH = SelectedPhThuChi?.MaKH;
+                var selectedPhThuChi_LoaiPhieu = SelectedPhThuChi?.LoaiPhieu;
+                TextBox_SoPhieu.Text = SelectedPhThuChi?.SoPhieu.ToString();
+                DatePicker_Ngay.Value = SelectedPhThuChi?.Ngay ?? DateTime.Now;
+                TextBox_SoTien.Text = SelectedPhThuChi?.SoTien.ToString();
+                var check = selectedPhThuChi_LoaiPhieu.ToString() == string.Empty;
+                ComboBox_LoaiPhieu.SelectedValue =
+                    check ? LoaiPh.Chi.ToString() : selectedPhThuChi_LoaiPhieu;
+                if (selectedPhThuChi_MaKH != string.Empty)
+                {
+                    ComboBox_MaKH.SelectedValue = selectedPhThuChi_MaKH;
+                }
+            } catch (Exception) { }
         }
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)

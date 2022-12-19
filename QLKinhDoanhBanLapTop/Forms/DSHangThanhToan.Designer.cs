@@ -41,6 +41,8 @@
             // 
             // DataGridView_ThemHang
             // 
+            this.DataGridView_ThemHang.AllowUserToAddRows = false;
+            this.DataGridView_ThemHang.AllowUserToDeleteRows = false;
             this.DataGridView_ThemHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView_ThemHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TenHang,
@@ -48,11 +50,13 @@
             this.DonGia});
             this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_ThemHang, 2);
             this.DataGridView_ThemHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView_ThemHang.Location = new System.Drawing.Point(3, 3);
+            this.DataGridView_ThemHang.Location = new System.Drawing.Point(3, 2);
+            this.DataGridView_ThemHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridView_ThemHang.Name = "DataGridView_ThemHang";
+            this.DataGridView_ThemHang.ReadOnly = true;
             this.DataGridView_ThemHang.RowHeadersWidth = 51;
             this.DataGridView_ThemHang.RowTemplate.Height = 29;
-            this.DataGridView_ThemHang.Size = new System.Drawing.Size(625, 364);
+            this.DataGridView_ThemHang.Size = new System.Drawing.Size(546, 274);
             this.DataGridView_ThemHang.TabIndex = 0;
             // 
             // TenHang
@@ -62,6 +66,7 @@
             this.TenHang.HeaderText = "Tên hàng";
             this.TenHang.MinimumWidth = 6;
             this.TenHang.Name = "TenHang";
+            this.TenHang.ReadOnly = true;
             // 
             // SoLuong
             // 
@@ -69,6 +74,7 @@
             this.SoLuong.HeaderText = "Số lượng";
             this.SoLuong.MinimumWidth = 6;
             this.SoLuong.Name = "SoLuong";
+            this.SoLuong.ReadOnly = true;
             this.SoLuong.Width = 125;
             // 
             // DonGia
@@ -77,6 +83,7 @@
             this.DonGia.HeaderText = "Đơn giá";
             this.DonGia.MinimumWidth = 6;
             this.DonGia.Name = "DonGia";
+            this.DonGia.ReadOnly = true;
             this.DonGia.Width = 125;
             // 
             // tableLayoutPanel1
@@ -89,19 +96,21 @@
             this.tableLayoutPanel1.Controls.Add(this.Btn_Them, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(631, 405);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(552, 304);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // Btn_ChapNhan
             // 
             this.Btn_ChapNhan.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Btn_ChapNhan.Location = new System.Drawing.Point(3, 373);
+            this.Btn_ChapNhan.Location = new System.Drawing.Point(3, 280);
+            this.Btn_ChapNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_ChapNhan.Name = "Btn_ChapNhan";
-            this.Btn_ChapNhan.Size = new System.Drawing.Size(94, 29);
+            this.Btn_ChapNhan.Size = new System.Drawing.Size(82, 22);
             this.Btn_ChapNhan.TabIndex = 1;
             this.Btn_ChapNhan.Text = "Chấp nhận";
             this.Btn_ChapNhan.UseVisualStyleBackColor = true;
@@ -110,22 +119,25 @@
             // Btn_Them
             // 
             this.Btn_Them.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Btn_Them.Location = new System.Drawing.Point(534, 373);
+            this.Btn_Them.Location = new System.Drawing.Point(467, 280);
+            this.Btn_Them.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Them.Name = "Btn_Them";
-            this.Btn_Them.Size = new System.Drawing.Size(94, 29);
+            this.Btn_Them.Size = new System.Drawing.Size(82, 22);
             this.Btn_Them.TabIndex = 2;
             this.Btn_Them.Text = "Thêm";
             this.Btn_Them.UseVisualStyleBackColor = true;
             this.Btn_Them.Click += new System.EventHandler(this.Btn_Them_Click);
             // 
-            // ThemHang
+            // DSHangThanhToan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 405);
+            this.ClientSize = new System.Drawing.Size(552, 304);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ThemHang";
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "DSHangThanhToan";
             this.Text = "Thêm hàng";
+            this.Load += new System.EventHandler(this.DSHangThanhToan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_ThemHang)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

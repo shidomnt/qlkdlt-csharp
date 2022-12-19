@@ -145,3 +145,6 @@ D:\C#\qlkdlt-csharp1\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\ref\QLKinhDoa
 D:\C#\qlkdlt-csharp1\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.ThanhToan.resources
 D:\C#\qlkdlt-csharp1\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.ThemHang.resources
 D:\C#\qlkdlt-csharp1\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.DSHangThanhToan.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.DSHangThanhToan.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.ThanhToan.resources
+E:\Study\source\repos\QLKinhDoanhBanLapTop\QLKinhDoanhBanLapTop\obj\Debug\net6.0-windows\QLKinhDoanhBanLapTop.Forms.ThemHang.resources

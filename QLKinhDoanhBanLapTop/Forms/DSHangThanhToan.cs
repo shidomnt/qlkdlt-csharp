@@ -13,7 +13,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 {
     internal partial class DSHangThanhToan : Form
     {
-        public List<HangThanhToan> ListHangThanhToan { get; set; }
+        public BindingList<HangThanhToan> ListHangThanhToan { get; set; }
 
         public QLKDLTContext Context { get; set; }
 
@@ -22,7 +22,6 @@ namespace QLKinhDoanhBanLapTop.Forms
             InitializeComponent();
             ListHangThanhToan = new();
             Context = context;
-            DataGridView_ThemHang.DataSource = ListHangThanhToan;
         }
 
         private void Btn_ChapNhan_Click(object sender, EventArgs e)
@@ -35,7 +34,15 @@ namespace QLKinhDoanhBanLapTop.Forms
         private void Btn_Them_Click(object sender, EventArgs e)
         {
             var form_ThemHang = new ThemHang(Context);
-            form_ThemHang.ShowDialog();
+            if (form_ThemHang.ShowDialog() == DialogResult.OK)
+            {
+                ListHangThanhToan.Add(form_ThemHang.HangThanhToan);
+            }
+        }
+
+        private void DSHangThanhToan_Load(object sender, EventArgs e)
+        {
+            DataGridView_ThemHang.DataSource = ListHangThanhToan;
         }
     }
 }

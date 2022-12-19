@@ -28,9 +28,14 @@ namespace QLKinhDoanhBanLapTop.Forms
         private void Btn_Them_Click(object sender, EventArgs e)
         {
             var typeHolder = new { MaHang = "", TenHang = "" };
-            var selectedHang = Program.Cast(typeHolder, ComboBox_TenHang.SelectedValue);
-            HangThanhToan.MaHang = Program.Cast(typeHolder, ComboBox_TenHang.SelectedValue);
-            HangThanhToan.TenHang = 
+            var selectedHang = Program.Cast(typeHolder, ComboBox_TenHang.SelectedItem);
+            HangThanhToan.MaHang = selectedHang.MaHang;
+            HangThanhToan.TenHang = selectedHang.TenHang;
+            HangThanhToan.DonGia = Convert.ToInt32(TextBox_DonGia.Text);
+            HangThanhToan.SoLuong = Convert.ToInt32(TextBox_SoLuong.Text);
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void ThemHang_Load(object sender, EventArgs e)

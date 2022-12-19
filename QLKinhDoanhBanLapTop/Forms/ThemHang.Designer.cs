@@ -33,10 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.TextBox_TenHang = new System.Windows.Forms.TextBox();
+            this.Btn_Them = new System.Windows.Forms.Button();
             this.TextBox_SoLuong = new System.Windows.Forms.TextBox();
             this.TextBox_DonGia = new System.Windows.Forms.TextBox();
+            this.ComboBox_TenHang = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,10 +50,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.TextBox_TenHang, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Btn_Them, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.TextBox_SoLuong, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.TextBox_DonGia, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.ComboBox_TenHang, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -85,7 +85,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 33);
+            this.label2.Size = new System.Drawing.Size(100, 34);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên hàng";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -94,7 +94,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 83);
+            this.label3.Location = new System.Drawing.Point(3, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 33);
             this.label3.TabIndex = 2;
@@ -105,34 +105,27 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 116);
+            this.label4.Location = new System.Drawing.Point(3, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 33);
             this.label4.TabIndex = 3;
             this.label4.Text = "Đơn giá";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button1
+            // Btn_Them
             // 
-            this.button1.Location = new System.Drawing.Point(428, 152);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // TextBox_TenHang
-            // 
-            this.TextBox_TenHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_TenHang.Location = new System.Drawing.Point(109, 53);
-            this.TextBox_TenHang.Name = "TextBox_TenHang";
-            this.TextBox_TenHang.Size = new System.Drawing.Size(313, 27);
-            this.TextBox_TenHang.TabIndex = 5;
+            this.Btn_Them.Location = new System.Drawing.Point(428, 153);
+            this.Btn_Them.Name = "Btn_Them";
+            this.Btn_Them.Size = new System.Drawing.Size(94, 29);
+            this.Btn_Them.TabIndex = 4;
+            this.Btn_Them.Text = "Thêm";
+            this.Btn_Them.UseVisualStyleBackColor = true;
+            this.Btn_Them.Click += new System.EventHandler(this.Btn_Them_Click);
             // 
             // TextBox_SoLuong
             // 
             this.TextBox_SoLuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_SoLuong.Location = new System.Drawing.Point(109, 86);
+            this.TextBox_SoLuong.Location = new System.Drawing.Point(109, 87);
             this.TextBox_SoLuong.Name = "TextBox_SoLuong";
             this.TextBox_SoLuong.Size = new System.Drawing.Size(313, 27);
             this.TextBox_SoLuong.TabIndex = 6;
@@ -140,10 +133,19 @@
             // TextBox_DonGia
             // 
             this.TextBox_DonGia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_DonGia.Location = new System.Drawing.Point(109, 119);
+            this.TextBox_DonGia.Location = new System.Drawing.Point(109, 120);
             this.TextBox_DonGia.Name = "TextBox_DonGia";
             this.TextBox_DonGia.Size = new System.Drawing.Size(313, 27);
             this.TextBox_DonGia.TabIndex = 7;
+            // 
+            // ComboBox_TenHang
+            // 
+            this.ComboBox_TenHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ComboBox_TenHang.FormattingEnabled = true;
+            this.ComboBox_TenHang.Location = new System.Drawing.Point(109, 53);
+            this.ComboBox_TenHang.Name = "ComboBox_TenHang";
+            this.ComboBox_TenHang.Size = new System.Drawing.Size(313, 28);
+            this.ComboBox_TenHang.TabIndex = 8;
             // 
             // ThemHang
             // 
@@ -154,6 +156,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ThemHang";
             this.Text = "ThemHang";
+            this.Load += new System.EventHandler(this.ThemHang_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -167,9 +170,9 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Button button1;
-        private TextBox TextBox_TenHang;
+        private Button Btn_Them;
         private TextBox TextBox_SoLuong;
         private TextBox TextBox_DonGia;
+        private ComboBox ComboBox_TenHang;
     }
 }

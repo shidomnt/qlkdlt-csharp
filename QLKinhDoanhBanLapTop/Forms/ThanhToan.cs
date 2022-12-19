@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLKinhDoanhBanLapTop.EF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,17 +11,19 @@ using System.Windows.Forms;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
-    public partial class ThanhToan : Form
+    internal partial class ThanhToan : Form
     {
+        public QLKDLTContext Context { get; set; }
 
-        public ThanhToan()
+        public ThanhToan(QLKDLTContext context)
         {
             InitializeComponent();
+            Context = context;
         }
 
         private void Btn_ThemHang_Click(object sender, EventArgs e)
         {
-            var form_ThemHang = new DSHangThanhToan();
+            var form_ThemHang = new DSHangThanhToan(Context);
             var result = form_ThemHang.ShowDialog();
             if (result == DialogResult.OK)
             {

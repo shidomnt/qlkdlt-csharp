@@ -49,6 +49,9 @@ namespace QLKinhDoanhBanLapTop
                 return false;
             }
         }
-
+        public static T Cast<T>(T typeHolder, object x)
+        {
+            return (T)x;
+        }
     }
 }

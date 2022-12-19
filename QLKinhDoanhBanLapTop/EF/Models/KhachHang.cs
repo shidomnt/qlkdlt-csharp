@@ -25,6 +25,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [MaxLength(50, ErrorMessage = "Dia chi qua dai! Toi da 50 ki tu")]
         public string DiaChi { get; set; } = null!;
 
+        [Required]
         [Column(TypeName = "varchar(12)")]
         [MaxLength(12, ErrorMessage = "So dien thoai qua dai! Toi da 12 ki tu")]
         public string SoDt { get; set; } = null!;

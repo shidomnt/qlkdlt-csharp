@@ -38,23 +38,23 @@ namespace QLKinhDoanhBanLapTop
 
         private void hàngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form_QLKH = new QLHang(Context);
-            form_QLKH.MdiParent = this;
-            form_QLKH.Show();
+            var form_QLHang = new QLHang(Context);
+            form_QLHang.MdiParent = this;
+            form_QLHang.Show();
         }
 
         private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //var form_QLKH = new QLHD(Context);
-            //form_QLKH.MdiParent = this;
-            //form_QLKH.Show();
+            var form_thanhToan = new ThanhToan(/*Context*/);
+            form_thanhToan.MdiParent = this;
+            form_thanhToan.Show();
         }
 
         private void phiếuThuChiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form_QLKH = new QLPhieuThuChi(Context);
-            form_QLKH.MdiParent = this;
-            form_QLKH.Show();
+            var form_QLPhThuChi = new QLPhieuThuChi(Context);
+            form_QLPhThuChi.MdiParent = this;
+            form_QLPhThuChi.Show();
         }
     }
 }

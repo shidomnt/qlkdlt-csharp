@@ -125,9 +125,10 @@ namespace QLKinhDoanhBanLapTop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SoPhieu"));
 
-                    b.Property<string>("LoaiPhieu")
+                    b.Property<string>("LoaiPhieuId")
                         .IsRequired()
-                        .HasColumnType("varchar(1)");
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("LoaiPhieu");
 
                     b.Property<string>("MaKH")
                         .IsRequired()

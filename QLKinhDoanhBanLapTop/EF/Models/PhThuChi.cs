@@ -19,6 +19,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Range(0, int.MaxValue, ErrorMessage = "So tien phai lon hon 0")]
         public int SoTien { get; set; }
 
+        [EnumDataType(typeof(LoaiPh))]
         [Column(TypeName = "varchar(1)")]
         public LoaiPh LoaiPhieu { get; set; }
 

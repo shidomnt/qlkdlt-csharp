@@ -52,9 +52,9 @@ namespace QLKinhDoanhBanLapTop
 
         private void phiếuThuChiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //var form_QLKH = new QLPhTC(Context);
-            //form_QLKH.MdiParent = this;
-            //form_QLKH.Show();
+            var form_QLKH = new QLPhieuThuChi(Context);
+            form_QLKH.MdiParent = this;
+            form_QLKH.Show();
         }
     }
 }

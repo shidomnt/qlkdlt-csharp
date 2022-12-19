@@ -59,9 +59,9 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
             var selectedRow = DataGridView_DSKH.SelectedRows[0];
             var selectedMa = selectedRow.Cells["MaHang"].Value.ToString();
-            SelectedHang = Context.Hang
-                .Where(Hang => Hang.MaHang == selectedMa)
-                .First();
+            var queryHang = Context.Hang
+                .Where(Hang => Hang.MaHang == selectedMa);
+            SelectedHang = queryHang.Any() ? queryHang.First() : null;
         }
 
         private async void Btn_Them_Click(object sender, EventArgs e)

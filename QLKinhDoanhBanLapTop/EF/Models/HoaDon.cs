@@ -1,12 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLKinhDoanhBanLapTop.EF.Models
 {
@@ -21,10 +16,22 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Required]
         public int SoTienTT { get; set; }
 
-        [Column(TypeName = "varchar(1)")]
+        [Browsable(false)]
+        [Column("LoaiHD", TypeName = "varchar(1)")]
         [Required]
-        public LoaiHD LoaiHD { get; set; } = LoaiHD.Xuat;
+        public char LoaiHDId { get; set; }
 
+        [NotMapped]
+        public ELoaiHD LoaiHD
+        {
+            get
+            {
+                return (ELoaiHD)LoaiHDId;
+            }
+            set { LoaiHDId = (char)value; }
+        }
+
+        [Browsable(false)]
         public KhachHang KhachHangNavigator { get; set; } = null!;
 
         [Required]
@@ -35,10 +42,10 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         public virtual List<ChiTietHD> ChiTietHDs { get; set; } = new List<ChiTietHD>();
 
     }
-    enum LoaiHD
+    enum ELoaiHD
     {
-        Xuat = 'X',
-        Nhap = 'N'
+        Xuất = 'X',
+        Nhập = 'N'
     }
 
 }

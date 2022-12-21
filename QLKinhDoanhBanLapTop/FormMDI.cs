@@ -45,7 +45,7 @@ namespace QLKinhDoanhBanLapTop
 
         private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form_thanhToan = new ThanhToan(Context);
+            var form_thanhToan = new QLHoaDon(Context);
             form_thanhToan.MdiParent = this;
             form_thanhToan.Show();
         }

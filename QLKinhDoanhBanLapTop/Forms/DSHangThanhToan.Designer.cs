@@ -49,14 +49,13 @@
             this.SoLuong,
             this.DonGia});
             this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_ThemHang, 2);
-            this.DataGridView_ThemHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView_ThemHang.Location = new System.Drawing.Point(3, 2);
+            this.DataGridView_ThemHang.Location = new System.Drawing.Point(3, 169);
             this.DataGridView_ThemHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataGridView_ThemHang.Name = "DataGridView_ThemHang";
             this.DataGridView_ThemHang.ReadOnly = true;
             this.DataGridView_ThemHang.RowHeadersWidth = 51;
             this.DataGridView_ThemHang.RowTemplate.Height = 29;
-            this.DataGridView_ThemHang.Size = new System.Drawing.Size(546, 274);
+            this.DataGridView_ThemHang.Size = new System.Drawing.Size(325, 113);
             this.DataGridView_ThemHang.TabIndex = 0;
             // 
             // TenHang
@@ -91,9 +90,9 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.DataGridView_ThemHang, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Btn_ChapNhan, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.Btn_Them, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DataGridView_ThemHang, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -101,16 +100,17 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(552, 304);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // Btn_ChapNhan
             // 
             this.Btn_ChapNhan.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Btn_ChapNhan.Location = new System.Drawing.Point(3, 280);
+            this.Btn_ChapNhan.Location = new System.Drawing.Point(3, 286);
             this.Btn_ChapNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_ChapNhan.Name = "Btn_ChapNhan";
-            this.Btn_ChapNhan.Size = new System.Drawing.Size(82, 22);
+            this.Btn_ChapNhan.Size = new System.Drawing.Size(82, 16);
             this.Btn_ChapNhan.TabIndex = 1;
             this.Btn_ChapNhan.Text = "Chấp nhận";
             this.Btn_ChapNhan.UseVisualStyleBackColor = true;
@@ -119,10 +119,10 @@
             // Btn_Them
             // 
             this.Btn_Them.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Btn_Them.Location = new System.Drawing.Point(467, 280);
+            this.Btn_Them.Location = new System.Drawing.Point(467, 286);
             this.Btn_Them.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Them.Name = "Btn_Them";
-            this.Btn_Them.Size = new System.Drawing.Size(82, 22);
+            this.Btn_Them.Size = new System.Drawing.Size(82, 16);
             this.Btn_Them.TabIndex = 2;
             this.Btn_Them.Text = "Thêm";
             this.Btn_Them.UseVisualStyleBackColor = true;

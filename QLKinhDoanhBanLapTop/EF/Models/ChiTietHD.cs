@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLKinhDoanhBanLapTop.EF.Models
 {
@@ -29,8 +25,10 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Required]
         public int Gia { get; set; }
 
+        [Browsable(false)]
         public HoaDon HoaDonNavigator { get; set; } = null!;
 
+        [Browsable(false)]
         public Hang HangNavigator { get; set; } = null!;
 
 

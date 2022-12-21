@@ -1,15 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using QLKinhDoanhBanLapTop.EF.Models;
 using QLKinhDoanhBanLapTop.EF;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using QLKinhDoanhBanLapTop.EF.Models;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -46,7 +38,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedPhThuChiChanged += (sender, e) => ExtractFromSelectedPhThuChi();
 
-            var listMaKHAndTenKH = 
+            var listMaKHAndTenKH =
                 Context.KhachHang
                 .Select(khachHang => new { khachHang.MaKH, khachHang.TenKH })
                 .ToList();
@@ -183,7 +175,8 @@ namespace QLKinhDoanhBanLapTop.Forms
                 {
                     ComboBox_MaKH.SelectedValue = selectedPhThuChi_MaKH;
                 }
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
         }
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)

@@ -13,11 +13,12 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         public QLKDLTContext Context { get; set; }
 
-        public KhachHang? SelectedKhachHang {
-            get 
+        public KhachHang? SelectedKhachHang
+        {
+            get
             {
                 return _selectedKhachhang;
-            } 
+            }
             set
             {
                 _selectedKhachhang = value;

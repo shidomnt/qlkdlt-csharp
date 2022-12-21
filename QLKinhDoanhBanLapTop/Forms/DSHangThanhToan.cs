@@ -1,13 +1,5 @@
 ﻿using QLKinhDoanhBanLapTop.EF;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -26,8 +18,8 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void Btn_ChapNhan_Click(object sender, EventArgs e)
         {
-            
-            DialogResult= DialogResult.OK;
+
+            DialogResult = DialogResult.OK;
             Close();
         }
 

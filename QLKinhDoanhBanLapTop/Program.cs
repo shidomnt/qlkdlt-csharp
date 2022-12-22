@@ -21,13 +21,15 @@ namespace QLKinhDoanhBanLapTop
 
             if (!IsServerConnected())
             {
-                MessageBox.Show("Khong the ket noi Database", "Loi ket noi database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không thể kết nối Database, chỉnh sửa file appsettings.json để thay đổi cấu hình kết nối Database", "Lỗi kết nối Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var context = new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
+            using var context = new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
 
             context.Database.Migrate();
+
+            AddListenerSavedChanges();
 
             Application.Run(new FormMDI(context));
         }
@@ -52,6 +54,24 @@ namespace QLKinhDoanhBanLapTop
         public static T Cast<T>(T typeHolder, object x)
         {
             return (T)x;
+        }
+
+        private static void AddListenerSavedChanges(QLKDLTContext context)
+        {
+
+            context.SavedChanges += new EventHandler<SavedChangesEventArgs>((sender, e) =>
+            {
+                MessageBox.Show("Thay đổi đã được lưu vào Database", "Thành công");
+            });
+
+            context.SaveChangesFailed += new EventHandler<SaveChangesFailedEventArgs>((sender, e) =>
+            {
+                MessageBox.Show(
+                    e.Exception?.InnerException?.Message ?? e?.Exception?.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            });
         }
     }
 }

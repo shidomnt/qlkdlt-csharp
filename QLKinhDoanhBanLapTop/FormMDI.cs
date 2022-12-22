@@ -14,19 +14,6 @@ namespace QLKinhDoanhBanLapTop
 
             Context = context;
 
-            Context.SavedChanges += new EventHandler<SavedChangesEventArgs>((sender, e) =>
-            {
-                MessageBox.Show("Thay đổi đã được lưu vào Database", "Thành công");
-            });
-
-            Context.SaveChangesFailed += new EventHandler<SaveChangesFailedEventArgs>((sender, e) =>
-            {
-                MessageBox.Show(
-                    e.Exception?.InnerException?.Message ?? e?.Exception?.Message,
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            });
         }
 
         private void kháchHàngToolStripMenuItem_Click(object sender, EventArgs e)

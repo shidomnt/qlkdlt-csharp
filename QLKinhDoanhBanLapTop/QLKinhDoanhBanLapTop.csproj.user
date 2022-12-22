@@ -19,11 +19,5 @@
     <Compile Update="FormMDI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\DSHangThanhToan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\ThemHang.cs">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

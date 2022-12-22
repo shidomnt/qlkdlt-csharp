@@ -63,20 +63,10 @@ namespace QLKinhDoanhBanLapTop.Forms
                 MessageBox.Show("Chon 1 hoa don de xem chi tiet");
                 return;
             }
-            //var form_ThemHang = new DSHangThanhToan(Context);
-            //if (ListHangThanhToan != null)
-            //{
-            //    form_ThemHang.ListHangThanhToan = new BindingList<HangThanhToan>(ListHangThanhToan);
-            //}
-            //var result = form_ThemHang.ShowDialog();
-            //if (result == DialogResult.OK)
-            //{
-            //    ListHangThanhToan = form_ThemHang.ListHangThanhToan.ToList();
-            //    SaveDSHangThanhToan();
-            //}
+            Context.SavedChanges -= SavedChangeEventHandler;
             var form_ChiTietHD = new QLChiTietHD(Context, SelectedHoaDon.SoHD);
-            form_ChiTietHD.MdiParent = this.MdiParent;
-            form_ChiTietHD.Show();
+            form_ChiTietHD.ShowDialog();
+            Context.SavedChanges += SavedChangeEventHandler;
         }
 
         private async void Btn_Them_Click(object sender, EventArgs e)
@@ -213,18 +203,6 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)
             => Context.SavedChanges -= SavedChangeEventHandler;
-
-    }
-    public class HangThanhToan
-    {
-        [Browsable(false)]
-        public string MaHang { get; set; } = string.Empty;
-
-        public string TenHang { get; set; } = string.Empty;
-
-        public int SoLuong { get; set; }
-
-        public int DonGia { get; set; }
 
     }
 }

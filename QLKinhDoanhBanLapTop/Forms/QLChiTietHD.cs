@@ -57,7 +57,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             await LoadContextChiTietHDToGridView();
         }
 
-        private void DataGridView_DSKH_SelectionChanged(object sender, EventArgs e)
+        private void DataGridView_DSHang_SelectionChanged(object sender, EventArgs e)
         {
             var rowCount = DataGridView_ChiTietHD.SelectedRows.Count;
             if (rowCount == 0)
@@ -67,9 +67,10 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
 
             var selectedRow = DataGridView_ChiTietHD.SelectedRows[0];
-            var selectedMa = selectedRow.Cells["SoHD"].Value.ToString();
+            var selectedSoHD = selectedRow.Cells["SoHD"].Value.ToString();
+            var selectedMaHang = selectedRow.Cells["MaHang"].Value.ToString();
             SelectedChiTietHD = Context.ChiTietHD
-                .Where(chiTietHD => chiTietHD.SoHD == selectedMa)
+                .Where(chiTietHD => chiTietHD.SoHD == selectedSoHD && chiTietHD.MaHang == selectedMaHang)
                 .First();
         }
 
@@ -140,13 +141,11 @@ namespace QLKinhDoanhBanLapTop.Forms
         }
         private async Task LoadContextChiTietHDToGridView()
         {
-            await Context.ChiTietHD
-                .Where(chiTietHD => chiTietHD.SoHD == ForSoHD)
-                .LoadAsync();
+            await Context.ChiTietHD.LoadAsync();
             void callback() => DataGridView_ChiTietHD.DataSource = Context.ChiTietHD
                 .Local.ToBindingList()
-                .Select(chiTietHD => new
-                { chiTietHD.SoHD, chiTietHD.MaHang, chiTietHD.HangNavigator.TenHang, chiTietHD.SoLuong, chiTietHD.Gia });
+                .Where(chiTietHD => chiTietHD.SoHD == ForSoHD)
+                .ToList();
             if (DataGridView_ChiTietHD.InvokeRequired)
             {
                 DataGridView_ChiTietHD.Invoke(callback);
@@ -175,5 +174,22 @@ namespace QLKinhDoanhBanLapTop.Forms
         private void QLChiTietHD_FormClosing(object sender, FormClosingEventArgs e)
             => Context.SavedChanges -= SavedChangeEventHandler;
 
+        private void ComboBox_Hang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var combobox = sender as ComboBox;
+            if (combobox == null)
+            {
+                return;
+            }
+            var typeHolder = new { MaHang = "", TenHang = "" };
+            var selectedHang = Program.Cast(typeHolder, combobox.SelectedItem);
+            var selectedHangDonGia = Context.Hang
+                .Where(hang => hang.MaHang == selectedHang.MaHang)
+                .Select(hang => hang.DonGia);
+            if (selectedHangDonGia.Any())
+            {
+                TextBox_DonGia.Text = selectedHangDonGia.First().ToString();
+            }
+        }
     }
 }

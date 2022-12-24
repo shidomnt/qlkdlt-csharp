@@ -29,10 +29,11 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private EventHandler<SavedChangesEventArgs>? SavedChangeEventHandler { get; set; }
 
-        public QLHang(QLKDLTContext context)
+        public QLHang()
         {
             InitializeComponent();
-            Context = context;
+            Context =
+                new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
 
         }
 

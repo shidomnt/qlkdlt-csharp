@@ -9,6 +9,14 @@ namespace QLKinhDoanhBanLapTop.EF
     {
         public QLKDLTContext CreateDbContext(string[] args)
         {
+            if (!Program.IsServerConnected())
+            {
+                MessageBox.Show("Không thể kết nối Database, kiểm tra kết nối Database hoặc chỉnh sửa file appsettings.json để thay đổi cấu hình kết nối Database và thử lại",
+                    "Lỗi kết nối Database",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!)
                 .AddJsonFile("appsettings.json").Build();

@@ -27,11 +27,11 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private EventHandler<SavedChangesEventArgs>? SavedChangeEventHandler { get; set; }
 
-        public QLHoaDon(QLKDLTContext context)
+        public QLHoaDon()
         {
             InitializeComponent();
-            Context = context;
-
+            Context =
+                new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
 
         }
 
@@ -39,13 +39,13 @@ namespace QLKinhDoanhBanLapTop.Forms
         {
             if (SelectedHoaDon == null)
             {
-                MessageBox.Show("Chon 1 hoa don de xem chi tiet");
+                MessageBox.Show("Hãy chọn 1 hóa đơn để xem chi tiết", "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 return;
             }
-            Context.SavedChanges -= SavedChangeEventHandler;
-            var form_ChiTietHD = new QLChiTietHD(Context, SelectedHoaDon.SoHD);
+            var form_ChiTietHD = new QLChiTietHD(SelectedHoaDon.SoHD);
             form_ChiTietHD.ShowDialog();
-            Context.SavedChanges += SavedChangeEventHandler;
         }
 
         private async void Btn_Them_Click(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
         }
 
-        private async void ThanhToan_Load(object sender, EventArgs e)
+        private async void QLHoaDon_Load(object sender, EventArgs e)
         {
 
             SavedChangeEventHandler = new(async (sender, e) =>
@@ -194,7 +194,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             catch (Exception) { }
         }
 
-        private void QLKH_FormClosing(object sender, FormClosingEventArgs e)
+        private void QLHoaDon_FormClosing(object sender, FormClosingEventArgs e)
             => Context.SavedChanges -= SavedChangeEventHandler;
 
     }

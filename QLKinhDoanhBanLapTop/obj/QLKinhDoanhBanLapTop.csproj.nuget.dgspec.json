@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Study\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj": {}
+    "E:\\Study\\C_Sharp\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj": {}
   },
   "projects": {
-    "E:\\Study\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj": {
+    "E:\\Study\\C_Sharp\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Study\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj",
+        "projectUniqueName": "E:\\Study\\C_Sharp\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj",
         "projectName": "QLKinhDoanhBanLapTop",
-        "projectPath": "E:\\Study\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj",
+        "projectPath": "E:\\Study\\C_Sharp\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj",
         "packagesPath": "C:\\Users\\havip\\.nuget\\packages\\",
-        "outputPath": "E:\\Study\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\obj\\",
+        "outputPath": "E:\\Study\\C_Sharp\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\havip\\AppData\\Roaming\\NuGet\\NuGet.Config",

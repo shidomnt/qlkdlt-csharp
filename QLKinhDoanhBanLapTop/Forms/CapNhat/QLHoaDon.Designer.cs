@@ -358,8 +358,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "QLHoaDon";
             this.Text = "Quản lý hóa đơn";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QLKH_FormClosing);
-            this.Load += new System.EventHandler(this.ThanhToan_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QLHoaDon_FormClosing);
+            this.Load += new System.EventHandler(this.QLHoaDon_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSHoaDon)).EndInit();

@@ -18,17 +18,13 @@ namespace QLKinhDoanhBanLapTop
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            if (!IsServerConnected())
+            using (var context = new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>()))
             {
-                MessageBox.Show("Không thể kết nối Database, chỉnh sửa file appsettings.json để thay đổi cấu hình kết nối Database", "Lỗi kết nối Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                context.Database.Migrate();
             }
 
-            using var context = new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
 
-            context.Database.Migrate();
-
-            Application.Run(new QLBanHang(context));
+            Application.Run(new QLBanHang());
         }
 
         public static bool IsServerConnected()

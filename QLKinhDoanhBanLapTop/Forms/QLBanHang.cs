@@ -1,22 +1,18 @@
-﻿using QLKinhDoanhBanLapTop.EF;
-using QLKinhDoanhBanLapTop.Forms;
+﻿using QLKinhDoanhBanLapTop.Forms;
 using QLKinhDoanhBanLapTop.Helpers;
 
 namespace QLKinhDoanhBanLapTop
 {
     internal partial class QLBanHang : Form
     {
-        public QLKDLTContext Context { get; set; }
-
-        public QLBanHang(QLKDLTContext context)
+        public QLBanHang()
         {
             InitializeComponent();
-            Context = context;
         }
 
         private void Btn_CapNhat_Click(object sender, EventArgs e)
         {
-            var formCapNhatMDI = new FormCapNhatMDI(Context);
+            var formCapNhatMDI = new FormCapNhatMDI();
             formCapNhatMDI.ShowDialog();
         }
 

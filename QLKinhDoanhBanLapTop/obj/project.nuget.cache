@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dVcARrdvDv1duR86ApzEki7ZqpT8M5VuhJC6daW9fA465S7PhB0CYaOUeLe2nB3HixaXgTAnLljq+nZeXOcxcA==",
+  "dgSpecHash": "gyf244ECmJ/6ToeafVDilvM9MeTbyYojGAnaA5z/jq3pSD4JtQZ4CVeDjm8DwzSOD+iEaNwTUgsEF3RrcLCzRA==",
   "success": true,
-  "projectFilePath": "E:\\Study\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj",
+  "projectFilePath": "E:\\Study\\C_Sharp\\source\\repos\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop\\QLKinhDoanhBanLapTop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\havip\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\havip\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

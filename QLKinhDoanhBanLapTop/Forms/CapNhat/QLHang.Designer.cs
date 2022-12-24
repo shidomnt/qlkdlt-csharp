@@ -37,11 +37,11 @@
             this.TextBox_MaHang = new System.Windows.Forms.TextBox();
             this.TextBox_TenHang = new System.Windows.Forms.TextBox();
             this.TextBox_DonGia = new System.Windows.Forms.TextBox();
-            this.DataGridView_DSKH = new System.Windows.Forms.DataGridView();
+            this.DataGridView_DSHang = new System.Windows.Forms.DataGridView();
             this.MaHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DvTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGiaText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Btn_Them = new System.Windows.Forms.Button();
             this.Btn_Sua = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.Btn_ResetInput = new System.Windows.Forms.Button();
             this.ComboBox_DvTinh = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSKH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSHang)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.Controls.Add(this.TextBox_MaHang, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.TextBox_TenHang, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.TextBox_DonGia, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.DataGridView_DSKH, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.DataGridView_DSHang, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.Btn_ResetInput, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.ComboBox_DvTinh, 1, 3);
@@ -166,28 +166,30 @@
             this.TextBox_DonGia.Name = "TextBox_DonGia";
             this.TextBox_DonGia.Size = new System.Drawing.Size(474, 23);
             this.TextBox_DonGia.TabIndex = 3;
+            this.TextBox_DonGia.Enter += new System.EventHandler(this.TextBox_DonGia_Enter);
+            this.TextBox_DonGia.Leave += new System.EventHandler(this.TextBox_DonGia_Leave);
             // 
-            // DataGridView_DSKH
+            // DataGridView_DSHang
             // 
-            this.DataGridView_DSKH.AllowUserToAddRows = false;
-            this.DataGridView_DSKH.AllowUserToDeleteRows = false;
-            this.DataGridView_DSKH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView_DSKH.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataGridView_DSHang.AllowUserToAddRows = false;
+            this.DataGridView_DSHang.AllowUserToDeleteRows = false;
+            this.DataGridView_DSHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView_DSHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaHang,
             this.TenHang,
             this.DvTinh,
-            this.DonGia});
-            this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_DSKH, 3);
-            this.DataGridView_DSKH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView_DSKH.Location = new System.Drawing.Point(3, 293);
-            this.DataGridView_DSKH.Name = "DataGridView_DSKH";
-            this.DataGridView_DSKH.ReadOnly = true;
-            this.DataGridView_DSKH.RowHeadersWidth = 51;
-            this.DataGridView_DSKH.RowTemplate.Height = 25;
-            this.DataGridView_DSKH.Size = new System.Drawing.Size(794, 154);
-            this.DataGridView_DSKH.TabIndex = 9;
-            this.DataGridView_DSKH.TabStop = false;
-            this.DataGridView_DSKH.SelectionChanged += new System.EventHandler(this.DataGridView_DSKH_SelectionChanged);
+            this.DonGiaText});
+            this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_DSHang, 3);
+            this.DataGridView_DSHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridView_DSHang.Location = new System.Drawing.Point(3, 293);
+            this.DataGridView_DSHang.Name = "DataGridView_DSHang";
+            this.DataGridView_DSHang.ReadOnly = true;
+            this.DataGridView_DSHang.RowHeadersWidth = 51;
+            this.DataGridView_DSHang.RowTemplate.Height = 25;
+            this.DataGridView_DSHang.Size = new System.Drawing.Size(794, 154);
+            this.DataGridView_DSHang.TabIndex = 9;
+            this.DataGridView_DSHang.TabStop = false;
+            this.DataGridView_DSHang.SelectionChanged += new System.EventHandler(this.DataGridView_DSKH_SelectionChanged);
             // 
             // MaHang
             // 
@@ -216,14 +218,14 @@
             this.DvTinh.ReadOnly = true;
             this.DvTinh.Width = 125;
             // 
-            // DonGia
+            // DonGiaText
             // 
-            this.DonGia.DataPropertyName = "DonGia";
-            this.DonGia.HeaderText = "Đơn giá";
-            this.DonGia.MinimumWidth = 6;
-            this.DonGia.Name = "DonGia";
-            this.DonGia.ReadOnly = true;
-            this.DonGia.Width = 190;
+            this.DonGiaText.DataPropertyName = "DonGiaText";
+            this.DonGiaText.HeaderText = "Đơn giá";
+            this.DonGiaText.MinimumWidth = 6;
+            this.DonGiaText.Name = "DonGiaText";
+            this.DonGiaText.ReadOnly = true;
+            this.DonGiaText.Width = 190;
             // 
             // tableLayoutPanel2
             // 
@@ -310,7 +312,7 @@
             this.Load += new System.EventHandler(this.QLH_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSKH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSHang)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -327,16 +329,16 @@
         private TextBox TextBox_MaHang;
         private TextBox TextBox_TenHang;
         private TextBox TextBox_DonGia;
-        private DataGridView DataGridView_DSKH;
+        private DataGridView DataGridView_DSHang;
         private TableLayoutPanel tableLayoutPanel2;
         private Button Btn_Them;
         private Button Btn_Sua;
         private Button Btn_Xoa;
         private Button Btn_ResetInput;
+        private ComboBox ComboBox_DvTinh;
         private DataGridViewTextBoxColumn MaHang;
         private DataGridViewTextBoxColumn TenHang;
         private DataGridViewTextBoxColumn DvTinh;
-        private DataGridViewTextBoxColumn DonGia;
-        private ComboBox ComboBox_DvTinh;
+        private DataGridViewTextBoxColumn DonGiaText;
     }
 }

@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using QLKinhDoanhBanLapTop.Helpers;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLKinhDoanhBanLapTop.EF.Models
 {
@@ -26,8 +22,18 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         public string DvTinh { get; set; } = null!;
 
         [Range(0, int.MaxValue, ErrorMessage = "Don gia phai lon hon 0")]
+        [Browsable(false)]
         [Required]
         public int DonGia { get; set; }
+
+        [NotMapped]
+        public string DonGiaText
+        {
+            get
+            {
+                return CurrencyHelpers.FormatCurrency(DonGia);
+            }
+        }
 
         public List<ChiTietHD> ChiTietHDs { get; set; } = new List<ChiTietHD>();
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
+using QLKinhDoanhBanLapTop.Helpers;
 using System.Data;
 
 namespace QLKinhDoanhBanLapTop.Forms
@@ -48,8 +49,8 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.KhachHang
                 .Select(khachHang => new { khachHang.MaKH, khachHang.TenKH })
                 .ToList();
-            ComboBox_MaKH.ValueMember = "MaKH";
-            ComboBox_MaKH.DisplayMember = "TenKH";
+            ComboBox_MaKH.ValueMember = nameof(KhachHang.MaKH);
+            ComboBox_MaKH.DisplayMember = nameof(KhachHang.TenKH);
             ComboBox_MaKH.DataSource = listMaKHAndTenKH;
 
             ComboBox_LoaiPhieu.DataSource = Enum.GetValues(typeof(LoaiPh));
@@ -89,7 +90,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Sua_Click(object sender, EventArgs e)
         {
             if (SelectedPhThuChi == null) return;
-            _ = int.TryParse(TextBox_SoTien.Text, out int soTien);
+            var soTien = CurrencyHelpers.DeFormatCurrency(TextBox_SoTien.Text);
             _ = int.TryParse(TextBox_SoPhieu.Text, out int soPhieu);
             _ = Enum.TryParse(ComboBox_LoaiPhieu.SelectedValue.ToString(), out LoaiPh loaiPhieu);
             SelectedPhThuChi.SoPhieu = soPhieu;
@@ -128,7 +129,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private PhThuChi PhThuChiMakeFromTextBox()
         {
-            _ = int.TryParse(TextBox_SoTien.Text, out int soTien);
+            var soTien = CurrencyHelpers.DeFormatCurrency(TextBox_SoTien.Text);
             _ = int.TryParse(TextBox_SoPhieu.Text, out int soPhieu);
             _ = Enum.TryParse(ComboBox_LoaiPhieu.SelectedValue.ToString(), out LoaiPh loaiPhieu);
             PhThuChi PhThuChi = new()
@@ -170,7 +171,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 var selectedPhThuChi_LoaiPhieu = SelectedPhThuChi?.LoaiPhieu;
                 TextBox_SoPhieu.Text = SelectedPhThuChi?.SoPhieu.ToString();
                 DatePicker_Ngay.Value = SelectedPhThuChi?.Ngay ?? DateTime.Now;
-                TextBox_SoTien.Text = SelectedPhThuChi?.SoTien.ToString();
+                TextBox_SoTien.Text = CurrencyHelpers.FormatCurrency(SelectedPhThuChi?.SoTien ?? 0);
                 var check = selectedPhThuChi_LoaiPhieu.ToString() == string.Empty;
                 ComboBox_LoaiPhieu.SelectedValue =
                     check ? LoaiPh.Chi.ToString() : selectedPhThuChi_LoaiPhieu;
@@ -184,5 +185,16 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)
             => Context.SavedChanges -= SavedChangeEventHandler;
+
+        private void TextBox_SoTien_Enter(object sender, EventArgs e)
+        {
+            TextBox_SoTien.Text = CurrencyHelpers.DeFormatCurrency(TextBox_SoTien.Text).ToString();
+        }
+
+        private void TextBox_SoTien_Leave(object sender, EventArgs e)
+        {
+            _ = int.TryParse(TextBox_SoTien.Text, out int soTienTT);
+            TextBox_SoTien.Text = CurrencyHelpers.FormatCurrency(soTienTT);
+        }
     }
 }

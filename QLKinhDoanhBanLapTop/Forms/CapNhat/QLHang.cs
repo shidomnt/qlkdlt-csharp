@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
+using QLKinhDoanhBanLapTop.Helpers;
 using System.Data;
 
 namespace QLKinhDoanhBanLapTop.Forms
@@ -53,13 +54,13 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void DataGridView_DSKH_SelectionChanged(object sender, EventArgs e)
         {
-            var rowCount = DataGridView_DSKH.SelectedRows.Count;
+            var rowCount = DataGridView_DSHang.SelectedRows.Count;
             if (rowCount == 0)
             {
                 SelectedHang = null;
                 return;
             }
-            var selectedRow = DataGridView_DSKH.SelectedRows[0];
+            var selectedRow = DataGridView_DSHang.SelectedRows[0];
             var selectedMa = selectedRow.Cells["MaHang"].Value.ToString();
             var queryHang = Context.Hang
                 .Where(Hang => Hang.MaHang == selectedMa);
@@ -83,7 +84,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Sua_Click(object sender, EventArgs e)
         {
             if (SelectedHang == null) return;
-            _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
+            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             _ = Enum.TryParse(ComboBox_DvTinh.SelectedValue.ToString(), out EDvTinh dvTinh);
             SelectedHang.MaHang = TextBox_MaHang.Text;
             SelectedHang.TenHang = TextBox_TenHang.Text;
@@ -119,7 +120,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private Hang HangMakeFromTextBox()
         {
-            _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
+            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             _ = Enum.TryParse(ComboBox_DvTinh.SelectedValue.ToString(), out EDvTinh dvTinh);
             Hang Hang = new()
             {
@@ -133,10 +134,10 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async Task LoadContextKHToGridView()
         {
             await Context.Hang.LoadAsync();
-            void callback() => DataGridView_DSKH.DataSource = Context.Hang.Local.ToBindingList();
-            if (DataGridView_DSKH.InvokeRequired)
+            void callback() => DataGridView_DSHang.DataSource = Context.Hang.Local.ToBindingList();
+            if (DataGridView_DSHang.InvokeRequired)
             {
-                DataGridView_DSKH.Invoke(callback);
+                DataGridView_DSHang.Invoke(callback);
             }
             else
             {
@@ -156,7 +157,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             TextBox_MaHang.Text = SelectedHang?.MaHang;
             TextBox_TenHang.Text = SelectedHang?.TenHang;
             ComboBox_DvTinh.SelectedIndex = dvTinhIndex > 0 ? dvTinhIndex : ((int)EDvTinh.Kg);
-            TextBox_DonGia.Text = SelectedHang?.DonGia.ToString();
+            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(SelectedHang?.DonGia ?? 0);
         }
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)
@@ -170,6 +171,17 @@ namespace QLKinhDoanhBanLapTop.Forms
             Lít,
             Tạ,
             Tấn
+        }
+
+        private void TextBox_DonGia_Enter(object sender, EventArgs e)
+        {
+            TextBox_DonGia.Text = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text).ToString();
+        }
+
+        private void TextBox_DonGia_Leave(object sender, EventArgs e)
+        {
+            _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
+            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(donGia);
         }
     }
 }

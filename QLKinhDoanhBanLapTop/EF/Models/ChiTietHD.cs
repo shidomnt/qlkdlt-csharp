@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using QLKinhDoanhBanLapTop.Helpers;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,8 +23,18 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         public int SoLuong { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "Gia phai lon hon 0")]
+        [Browsable(false)]
         [Required]
         public int Gia { get; set; }
+
+        [NotMapped]
+        public string GiaText
+        {
+            get
+            {
+                return CurrencyHelpers.FormatCurrency(Gia);
+            }
+        }
 
         [Browsable(false)]
         public HoaDon HoaDonNavigator { get; set; } = null!;

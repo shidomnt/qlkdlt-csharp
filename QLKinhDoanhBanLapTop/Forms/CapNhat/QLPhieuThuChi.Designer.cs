@@ -39,7 +39,7 @@
             this.DataGridView_DSPhThuChi = new System.Windows.Forms.DataGridView();
             this.SoPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ngay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoTienText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -164,6 +164,8 @@
             this.TextBox_SoTien.Name = "TextBox_SoTien";
             this.TextBox_SoTien.Size = new System.Drawing.Size(474, 23);
             this.TextBox_SoTien.TabIndex = 2;
+            this.TextBox_SoTien.Enter += new System.EventHandler(this.TextBox_SoTien_Enter);
+            this.TextBox_SoTien.Leave += new System.EventHandler(this.TextBox_SoTien_Leave);
             // 
             // DataGridView_DSPhThuChi
             // 
@@ -173,7 +175,7 @@
             this.DataGridView_DSPhThuChi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SoPhieu,
             this.Ngay,
-            this.SoTien,
+            this.SoTienText,
             this.LoaiPhieu,
             this.MaKH});
             this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_DSPhThuChi, 3);
@@ -206,14 +208,14 @@
             this.Ngay.ReadOnly = true;
             this.Ngay.Width = 200;
             // 
-            // SoTien
+            // SoTienText
             // 
-            this.SoTien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SoTien.DataPropertyName = "SoTien";
-            this.SoTien.HeaderText = "Số tiền";
-            this.SoTien.MinimumWidth = 6;
-            this.SoTien.Name = "SoTien";
-            this.SoTien.ReadOnly = true;
+            this.SoTienText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SoTienText.DataPropertyName = "SoTienText";
+            this.SoTienText.HeaderText = "Số tiền";
+            this.SoTienText.MinimumWidth = 6;
+            this.SoTienText.Name = "SoTienText";
+            this.SoTienText.ReadOnly = true;
             // 
             // LoaiPhieu
             // 
@@ -371,12 +373,12 @@
         private Button Btn_ResetInput;
         private Label label6;
         private ComboBox ComboBox_MaKH;
-        private DataGridViewTextBoxColumn SoPhieu;
-        private DataGridViewTextBoxColumn Ngay;
-        private DataGridViewTextBoxColumn SoTien;
-        private DataGridViewTextBoxColumn LoaiPhieu;
-        private DataGridViewTextBoxColumn MaKH;
         private ComboBox ComboBox_LoaiPhieu;
         private DateTimePicker DatePicker_Ngay;
+        private DataGridViewTextBoxColumn SoPhieu;
+        private DataGridViewTextBoxColumn Ngay;
+        private DataGridViewTextBoxColumn SoTienText;
+        private DataGridViewTextBoxColumn LoaiPhieu;
+        private DataGridViewTextBoxColumn MaKH;
     }
 }

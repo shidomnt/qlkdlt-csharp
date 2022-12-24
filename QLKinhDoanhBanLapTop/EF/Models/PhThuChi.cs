@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using QLKinhDoanhBanLapTop.Helpers;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,8 +15,18 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         public DateTime Ngay { get; set; } = DateTime.Now;
 
         [Required]
+        [Browsable(false)]
         [Range(0, int.MaxValue, ErrorMessage = "So tien phai lon hon 0")]
         public int SoTien { get; set; }
+
+        [NotMapped]
+        public string SoTienText
+        {
+            get
+            {
+                return CurrencyHelpers.FormatCurrency(SoTien);
+            }
+        }
 
         [Browsable(false)]
         [Required]

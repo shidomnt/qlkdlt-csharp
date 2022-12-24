@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
+using QLKinhDoanhBanLapTop.Helpers;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -71,7 +72,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             {
                 SelectedHoaDon.SoHD = TextBox_SoHD.Text;
                 SelectedHoaDon.NgayPS = DatePicker_Ngay.Value;
-                SelectedHoaDon.SoTienTT = Convert.ToInt32(TextBox_SoTienTT.Text);
+                SelectedHoaDon.SoTienTT = CurrencyHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
                 SelectedHoaDon.LoaiHD = (ELoaiHD)ComboBox_LoaiHD.SelectedValue;
                 SelectedHoaDon.MaKH = (string)ComboBox_MaKH.SelectedValue;
 
@@ -115,9 +116,11 @@ namespace QLKinhDoanhBanLapTop.Forms
             if (listKH.Any())
             {
                 ComboBox_MaKH.DataSource = listKH;
-                ComboBox_MaKH.ValueMember = "MaKH";
-                ComboBox_MaKH.DisplayMember = "TenKH";
+                ComboBox_MaKH.ValueMember = nameof(KhachHang.MaKH);
+                ComboBox_MaKH.DisplayMember = nameof(KhachHang.TenKH);
             }
+
+            TextBox_SoTienTT.Text = "0";
 
             await LoadContextHoaDonToGridView();
         }
@@ -146,7 +149,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private HoaDon HoaDonMakeFromTextBox()
         {
             _ = Enum.TryParse(ComboBox_LoaiHD.SelectedValue.ToString(), out ELoaiHD loaiHD);
-            _ = int.TryParse(TextBox_SoTienTT.Text, out int soTienTT);
+            var soTienTT = CurrencyHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
             var hoaDon = new HoaDon()
             {
                 SoHD = TextBox_SoHD.Text,
@@ -161,7 +164,8 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async Task LoadContextHoaDonToGridView()
         {
             await Context.HoaDon.LoadAsync();
-            void callback() => DataGridView_DSHoaDon.DataSource = Context.HoaDon.Local.ToBindingList();
+            void callback() => DataGridView_DSHoaDon.DataSource =
+                Context.HoaDon.Local.ToBindingList();
             if (DataGridView_DSHoaDon.InvokeRequired)
             {
                 DataGridView_DSHoaDon.Invoke(callback);
@@ -186,7 +190,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             {
                 TextBox_SoHD.Text = SelectedHoaDon.SoHD;
                 DatePicker_Ngay.Value = SelectedHoaDon.NgayPS;
-                TextBox_SoTienTT.Text = SelectedHoaDon.SoTienTT.ToString();
+                TextBox_SoTienTT.Text = CurrencyHelpers.FormatCurrency(SelectedHoaDon.SoTienTT);
                 ComboBox_LoaiHD.SelectedValue = SelectedHoaDon.LoaiHD.ToString();
                 ComboBox_MaKH.SelectedValue = SelectedHoaDon.MaKH;
 
@@ -197,5 +201,15 @@ namespace QLKinhDoanhBanLapTop.Forms
         private void QLHoaDon_FormClosing(object sender, FormClosingEventArgs e)
             => Context.SavedChanges -= SavedChangeEventHandler;
 
+        private void TextBox_SoTienTT_Enter(object sender, EventArgs e)
+        {
+            TextBox_SoTienTT.Text = CurrencyHelpers.DeFormatCurrency(TextBox_SoTienTT.Text).ToString();
+        }
+
+        private void TextBox_SoTienTT_Leave(object sender, EventArgs e)
+        {
+            _ = int.TryParse(TextBox_SoTienTT.Text, out int soTienTT);
+            TextBox_SoTienTT.Text = CurrencyHelpers.FormatCurrency(soTienTT);
+        }
     }
 }

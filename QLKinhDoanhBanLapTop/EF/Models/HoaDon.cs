@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using QLKinhDoanhBanLapTop.Helpers;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,8 +14,18 @@ namespace QLKinhDoanhBanLapTop.EF.Models
 
         public DateTime NgayPS { get; set; } = DateTime.Now;
 
+        [Browsable(false)]
         [Required]
         public int SoTienTT { get; set; }
+
+        [NotMapped]
+        public string SoTienTTText
+        {
+            get
+            {
+                return CurrencyHelpers.FormatCurrency(SoTienTT);
+            }
+        }
 
         [Browsable(false)]
         [Column("LoaiHD", TypeName = "varchar(1)")]

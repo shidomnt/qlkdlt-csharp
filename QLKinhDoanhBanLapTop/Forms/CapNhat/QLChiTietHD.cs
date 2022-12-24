@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
+using QLKinhDoanhBanLapTop.Helpers;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -47,12 +48,12 @@ namespace QLKinhDoanhBanLapTop.Forms
             SelectedChiTietHDChanged += (sender, e) => ComboBox_Hang.Enabled = SelectedChiTietHD == null;
 
             var listHang = Context.Hang
-                .Select(hang => new { hang.MaHang, hang.TenHang })
+                .Select(hang => new { hang.MaHang, hang.TenHang, hang.DonGia })
                 .ToList();
 
             ComboBox_Hang.DataSource = listHang;
-            ComboBox_Hang.DisplayMember = "TenHang";
-            ComboBox_Hang.ValueMember = "MaHang";
+            ComboBox_Hang.DisplayMember = nameof(Hang.TenHang);
+            ComboBox_Hang.ValueMember = nameof(Hang.MaHang);
 
             TextBox_SoHD.Text = ForSoHD;
 
@@ -69,8 +70,8 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
 
             var selectedRow = DataGridView_ChiTietHD.SelectedRows[0];
-            var selectedSoHD = selectedRow.Cells["SoHD"].Value.ToString();
-            var selectedMaHang = selectedRow.Cells["MaHang"].Value.ToString();
+            var selectedSoHD = selectedRow.Cells[nameof(HoaDon.SoHD)].Value.ToString();
+            var selectedMaHang = selectedRow.Cells[nameof(Hang.MaHang)].Value.ToString();
             SelectedChiTietHD = Context.ChiTietHD
                 .Where(chiTietHD => chiTietHD.SoHD == selectedSoHD && chiTietHD.MaHang == selectedMaHang)
                 .First();
@@ -85,9 +86,8 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.ChiTietHD.Add(ChiTietHD);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -95,7 +95,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         {
             if (SelectedChiTietHD == null) return;
             _ = int.TryParse(TextBox_SoLuong.Text, out int soLuong);
-            _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
+            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             SelectedChiTietHD.SoHD = TextBox_SoHD.Text;
             SelectedChiTietHD.MaHang = ComboBox_Hang.SelectedValue.ToString() ?? string.Empty;
             SelectedChiTietHD.SoLuong = soLuong;
@@ -131,7 +131,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private ChiTietHD ChiTietHDMakeFromTextBox()
         {
             _ = int.TryParse(TextBox_SoLuong.Text, out int soLuong);
-            _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
+            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             ChiTietHD ChiTietHD = new()
             {
                 SoHD = TextBox_SoHD.Text,
@@ -143,11 +143,11 @@ namespace QLKinhDoanhBanLapTop.Forms
         }
         private async Task LoadContextChiTietHDToGridView()
         {
-            await Context.ChiTietHD.LoadAsync();
-            void callback() => DataGridView_ChiTietHD.DataSource = Context.ChiTietHD
-                .Local.ToBindingList()
+            await Context.ChiTietHD
                 .Where(chiTietHD => chiTietHD.SoHD == ForSoHD)
-                .ToList();
+                .LoadAsync();
+            void callback() => DataGridView_ChiTietHD.DataSource =
+                Context.ChiTietHD.Local.ToBindingList();
             if (DataGridView_ChiTietHD.InvokeRequired)
             {
                 DataGridView_ChiTietHD.Invoke(callback);
@@ -156,7 +156,6 @@ namespace QLKinhDoanhBanLapTop.Forms
             {
                 callback();
             }
-
         }
 
         protected virtual void OnSelectedChiTietHDChanged(EventArgs e)
@@ -170,7 +169,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             TextBox_SoHD.Text = SelectedChiTietHD.SoHD;
             ComboBox_Hang.SelectedValue = SelectedChiTietHD.MaHang;
             TextBox_SoLuong.Text = SelectedChiTietHD.SoLuong.ToString();
-            TextBox_DonGia.Text = SelectedChiTietHD.Gia.ToString();
+            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(SelectedChiTietHD.Gia);
         }
 
         private void QLChiTietHD_FormClosing(object sender, FormClosingEventArgs e)
@@ -183,15 +182,21 @@ namespace QLKinhDoanhBanLapTop.Forms
             {
                 return;
             }
-            var typeHolder = new { MaHang = "", TenHang = "" };
+            var typeHolder = new { MaHang = "", TenHang = "", DonGia = 0 };
             var selectedHang = Program.Cast(typeHolder, combobox.SelectedItem);
-            var selectedHangDonGia = Context.Hang
-                .Where(hang => hang.MaHang == selectedHang.MaHang)
-                .Select(hang => hang.DonGia);
-            if (selectedHangDonGia.Any())
-            {
-                TextBox_DonGia.Text = selectedHangDonGia.First().ToString();
-            }
+            var donGiaGoc = selectedHang.DonGia;
+            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(donGiaGoc);
+        }
+
+        private void TextBox_DonGia_Enter(object sender, EventArgs e)
+        {
+            TextBox_DonGia.Text = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text).ToString();
+        }
+
+        private void TextBox_DonGia_Leave(object sender, EventArgs e)
+        {
+            _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
+            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(donGia);
         }
     }
 }

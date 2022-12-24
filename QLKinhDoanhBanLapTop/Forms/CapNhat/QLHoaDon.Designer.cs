@@ -37,11 +37,6 @@
             this.TextBox_SoHD = new System.Windows.Forms.TextBox();
             this.TextBox_SoTienTT = new System.Windows.Forms.TextBox();
             this.DataGridView_DSHoaDon = new System.Windows.Forms.DataGridView();
-            this.SoHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayPS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoTienTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Btn_Them = new System.Windows.Forms.Button();
             this.Btn_Sua = new System.Windows.Forms.Button();
@@ -52,6 +47,11 @@
             this.ComboBox_LoaiHD = new System.Windows.Forms.ComboBox();
             this.DatePicker_Ngay = new System.Windows.Forms.DateTimePicker();
             this.Btn_ThemHang = new System.Windows.Forms.Button();
+            this.SoHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayPS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoTienTTText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSHoaDon)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -165,6 +165,8 @@
             this.TextBox_SoTienTT.Name = "TextBox_SoTienTT";
             this.TextBox_SoTienTT.Size = new System.Drawing.Size(487, 23);
             this.TextBox_SoTienTT.TabIndex = 2;
+            this.TextBox_SoTienTT.Enter += new System.EventHandler(this.TextBox_SoTienTT_Enter);
+            this.TextBox_SoTienTT.Leave += new System.EventHandler(this.TextBox_SoTienTT_Leave);
             // 
             // DataGridView_DSHoaDon
             // 
@@ -174,7 +176,7 @@
             this.DataGridView_DSHoaDon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SoHD,
             this.NgayPS,
-            this.SoTienTT,
+            this.SoTienTTText,
             this.LoaiHD,
             this.MaKH});
             this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_DSHoaDon, 3);
@@ -188,51 +190,6 @@
             this.DataGridView_DSHoaDon.TabIndex = 1;
             this.DataGridView_DSHoaDon.TabStop = false;
             this.DataGridView_DSHoaDon.SelectionChanged += new System.EventHandler(this.DataGridView_DSHoaDon_SelectionChanged);
-            // 
-            // SoHD
-            // 
-            this.SoHD.DataPropertyName = "SoHD";
-            this.SoHD.HeaderText = "Số hóa đơn";
-            this.SoHD.MinimumWidth = 6;
-            this.SoHD.Name = "SoHD";
-            this.SoHD.ReadOnly = true;
-            this.SoHD.Width = 125;
-            // 
-            // NgayPS
-            // 
-            this.NgayPS.DataPropertyName = "NgayPS";
-            this.NgayPS.HeaderText = "Ngày phát sinh";
-            this.NgayPS.MinimumWidth = 6;
-            this.NgayPS.Name = "NgayPS";
-            this.NgayPS.ReadOnly = true;
-            this.NgayPS.Width = 200;
-            // 
-            // SoTienTT
-            // 
-            this.SoTienTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SoTienTT.DataPropertyName = "SoTienTT";
-            this.SoTienTT.HeaderText = "Số tiền TT";
-            this.SoTienTT.MinimumWidth = 6;
-            this.SoTienTT.Name = "SoTienTT";
-            this.SoTienTT.ReadOnly = true;
-            // 
-            // LoaiHD
-            // 
-            this.LoaiHD.DataPropertyName = "LoaiHD";
-            this.LoaiHD.HeaderText = "Loại hóa đơn";
-            this.LoaiHD.MinimumWidth = 6;
-            this.LoaiHD.Name = "LoaiHD";
-            this.LoaiHD.ReadOnly = true;
-            this.LoaiHD.Width = 150;
-            // 
-            // MaKH
-            // 
-            this.MaKH.DataPropertyName = "MaKH";
-            this.MaKH.HeaderText = "Mã khách hàng";
-            this.MaKH.MinimumWidth = 6;
-            this.MaKH.Name = "MaKH";
-            this.MaKH.ReadOnly = true;
-            this.MaKH.Width = 170;
             // 
             // tableLayoutPanel2
             // 
@@ -349,6 +306,51 @@
             this.Btn_ThemHang.UseVisualStyleBackColor = true;
             this.Btn_ThemHang.Click += new System.EventHandler(this.Btn_DSHang_Click);
             // 
+            // SoHD
+            // 
+            this.SoHD.DataPropertyName = "SoHD";
+            this.SoHD.HeaderText = "Số hóa đơn";
+            this.SoHD.MinimumWidth = 6;
+            this.SoHD.Name = "SoHD";
+            this.SoHD.ReadOnly = true;
+            this.SoHD.Width = 125;
+            // 
+            // NgayPS
+            // 
+            this.NgayPS.DataPropertyName = "NgayPS";
+            this.NgayPS.HeaderText = "Ngày phát sinh";
+            this.NgayPS.MinimumWidth = 6;
+            this.NgayPS.Name = "NgayPS";
+            this.NgayPS.ReadOnly = true;
+            this.NgayPS.Width = 200;
+            // 
+            // SoTienTTText
+            // 
+            this.SoTienTTText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SoTienTTText.DataPropertyName = "SoTienTTText";
+            this.SoTienTTText.HeaderText = "Số tiền TT";
+            this.SoTienTTText.MinimumWidth = 6;
+            this.SoTienTTText.Name = "SoTienTTText";
+            this.SoTienTTText.ReadOnly = true;
+            // 
+            // LoaiHD
+            // 
+            this.LoaiHD.DataPropertyName = "LoaiHD";
+            this.LoaiHD.HeaderText = "Loại hóa đơn";
+            this.LoaiHD.MinimumWidth = 6;
+            this.LoaiHD.Name = "LoaiHD";
+            this.LoaiHD.ReadOnly = true;
+            this.LoaiHD.Width = 150;
+            // 
+            // MaKH
+            // 
+            this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.HeaderText = "Mã khách hàng";
+            this.MaKH.MinimumWidth = 6;
+            this.MaKH.Name = "MaKH";
+            this.MaKH.ReadOnly = true;
+            this.MaKH.Width = 170;
+            // 
             // QLHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -388,11 +390,11 @@
         private ComboBox ComboBox_MaKH;
         private ComboBox ComboBox_LoaiHD;
         private DateTimePicker DatePicker_Ngay;
+        private Button Btn_ThemHang;
         private DataGridViewTextBoxColumn SoHD;
         private DataGridViewTextBoxColumn NgayPS;
-        private DataGridViewTextBoxColumn SoTienTT;
+        private DataGridViewTextBoxColumn SoTienTTText;
         private DataGridViewTextBoxColumn LoaiHD;
         private DataGridViewTextBoxColumn MaKH;
-        private Button Btn_ThemHang;
     }
 }

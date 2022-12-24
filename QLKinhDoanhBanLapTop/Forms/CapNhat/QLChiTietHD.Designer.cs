@@ -46,7 +46,7 @@
             this.SoHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GiaText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ComboBox_Hang = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -146,6 +146,7 @@
             // TextBox_SoHD
             // 
             this.TextBox_SoHD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextBox_SoHD.Enabled = false;
             this.TextBox_SoHD.Location = new System.Drawing.Point(163, 63);
             this.TextBox_SoHD.Name = "TextBox_SoHD";
             this.TextBox_SoHD.ReadOnly = true;
@@ -167,6 +168,8 @@
             this.TextBox_DonGia.Name = "TextBox_DonGia";
             this.TextBox_DonGia.Size = new System.Drawing.Size(474, 23);
             this.TextBox_DonGia.TabIndex = 3;
+            this.TextBox_DonGia.Enter += new System.EventHandler(this.TextBox_DonGia_Enter);
+            this.TextBox_DonGia.Leave += new System.EventHandler(this.TextBox_DonGia_Leave);
             // 
             // tableLayoutPanel2
             // 
@@ -239,7 +242,7 @@
             this.SoHD,
             this.MaHang,
             this.SoLuong,
-            this.Gia});
+            this.GiaText});
             this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_ChiTietHD, 3);
             this.DataGridView_ChiTietHD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView_ChiTietHD.Location = new System.Drawing.Point(3, 292);
@@ -280,14 +283,14 @@
             this.SoLuong.Name = "SoLuong";
             this.SoLuong.ReadOnly = true;
             // 
-            // Gia
+            // GiaText
             // 
-            this.Gia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Gia.DataPropertyName = "Gia";
-            this.Gia.HeaderText = "Đơn giá";
-            this.Gia.MinimumWidth = 6;
-            this.Gia.Name = "Gia";
-            this.Gia.ReadOnly = true;
+            this.GiaText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.GiaText.DataPropertyName = "GiaText";
+            this.GiaText.HeaderText = "Đơn giá";
+            this.GiaText.MinimumWidth = 6;
+            this.GiaText.Name = "GiaText";
+            this.GiaText.ReadOnly = true;
             // 
             // ComboBox_Hang
             // 
@@ -340,6 +343,6 @@
         private DataGridViewTextBoxColumn SoHD;
         private DataGridViewTextBoxColumn MaHang;
         private DataGridViewTextBoxColumn SoLuong;
-        private DataGridViewTextBoxColumn Gia;
+        private DataGridViewTextBoxColumn GiaText;
     }
 }

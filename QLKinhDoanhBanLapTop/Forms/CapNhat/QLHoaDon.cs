@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
-using System.ComponentModel;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -21,15 +20,6 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
             set
             {
-                if (value == null)
-                {
-                    TextBox_SoHD.ReadOnly = false;
-                }
-                else
-                {
-                    TextBox_SoHD.ReadOnly = true;
-                }
-
                 _selectedHoaDon = value;
                 OnSelectedHoaDonChanged(new EventArgs());
             }
@@ -43,17 +33,6 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context = context;
 
 
-            ComboBox_LoaiHD.DataSource = Enum.GetValues(typeof(ELoaiHD));
-
-            var listKH = Context.KhachHang
-                .Select(khachhang => new { khachhang.MaKH, khachhang.TenKH })
-                .ToList();
-            if (listKH.Any())
-            {
-                ComboBox_MaKH.DataSource = listKH;
-                ComboBox_MaKH.ValueMember = "MaKH";
-                ComboBox_MaKH.DisplayMember = "TenKH";
-            }
         }
 
         private void Btn_DSHang_Click(object sender, EventArgs e)
@@ -125,6 +104,20 @@ namespace QLKinhDoanhBanLapTop.Forms
                 );
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedHoaDonChanged += (sender, e) => ExtractFromSelectedHoaDon();
+            SelectedHoaDonChanged += (sender, e) => TextBox_SoHD.ReadOnly = SelectedHoaDon != null;
+
+
+            ComboBox_LoaiHD.DataSource = Enum.GetValues(typeof(ELoaiHD));
+
+            var listKH = Context.KhachHang
+                .Select(khachhang => new { khachhang.MaKH, khachhang.TenKH })
+                .ToList();
+            if (listKH.Any())
+            {
+                ComboBox_MaKH.DataSource = listKH;
+                ComboBox_MaKH.ValueMember = "MaKH";
+                ComboBox_MaKH.DisplayMember = "TenKH";
+            }
 
             await LoadContextHoaDonToGridView();
         }

@@ -32,6 +32,11 @@ namespace QLKinhDoanhBanLapTop.Forms
         {
             InitializeComponent();
             Context = context;
+
+        }
+
+        private async void QLPhThuChi_Load(object sender, EventArgs e)
+        {
             SavedChangeEventHandler = new(async (sender, e) =>
                 await LoadContextKHToGridView()
                 );
@@ -47,10 +52,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             ComboBox_MaKH.DataSource = listMaKHAndTenKH;
 
             ComboBox_LoaiPhieu.DataSource = Enum.GetValues(typeof(LoaiPh));
-        }
 
-        private async void QLPhThuChi_Load(object sender, EventArgs e)
-        {
             await LoadContextKHToGridView();
         }
 

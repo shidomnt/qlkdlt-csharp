@@ -32,15 +32,18 @@ namespace QLKinhDoanhBanLapTop.Forms
         {
             InitializeComponent();
             Context = context;
+
+        }
+
+        private async void QLKH_Load(object sender, EventArgs e)
+        {
             SavedChangeEventHandler = new(async (sender, e) =>
                 await LoadContextKHToGridView()
                 );
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedKhachHangChanged += (sender, e) => ExtractFromSelectedKhachHang();
-        }
+            SelectedKhachHangChanged += (sender, e) => TextBox_MaKH.ReadOnly = SelectedKhachHang != null;
 
-        private async void QLKH_Load(object sender, EventArgs e)
-        {
             await LoadContextKHToGridView();
         }
 

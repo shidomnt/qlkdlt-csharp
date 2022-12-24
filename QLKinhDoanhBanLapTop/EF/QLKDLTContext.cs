@@ -5,7 +5,22 @@ namespace QLKinhDoanhBanLapTop.EF
 {
     internal class QLKDLTContext : DbContext
     {
-        public QLKDLTContext(DbContextOptions<QLKDLTContext> options) : base(options) { }
+        public QLKDLTContext(DbContextOptions<QLKDLTContext> options) : base(options)
+        {
+            SavedChanges += new EventHandler<SavedChangesEventArgs>((sender, e) =>
+            {
+                MessageBox.Show("Thay đổi đã được lưu vào Database", "Thành công");
+            });
+
+            SaveChangesFailed += new EventHandler<SaveChangesFailedEventArgs>((sender, e) =>
+            {
+                MessageBox.Show(
+                    e.Exception?.InnerException?.Message ?? e?.Exception?.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            });
+        }
 
         public DbSet<KhachHang> KhachHang { get; set; }
 

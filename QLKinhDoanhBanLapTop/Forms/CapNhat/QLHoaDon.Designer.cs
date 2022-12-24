@@ -80,19 +80,18 @@
             this.tableLayoutPanel1.Controls.Add(this.Btn_ThemHang, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 67F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(939, 560);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(822, 420);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -100,9 +99,9 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(190, 0);
+            this.label1.Location = new System.Drawing.Point(167, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(557, 80);
+            this.label1.Size = new System.Drawing.Size(487, 60);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hóa đơn";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -111,9 +110,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 80);
+            this.label2.Location = new System.Drawing.Point(3, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 35);
+            this.label2.Size = new System.Drawing.Size(158, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "Số hóa đơn";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -122,9 +121,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 115);
+            this.label3.Location = new System.Drawing.Point(3, 89);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 35);
+            this.label3.Size = new System.Drawing.Size(158, 29);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ngày phát sinh";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,9 +132,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 150);
+            this.label4.Location = new System.Drawing.Point(3, 118);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(181, 35);
+            this.label4.Size = new System.Drawing.Size(158, 29);
             this.label4.TabIndex = 3;
             this.label4.Text = "Số tiền thanh toán";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,9 +143,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 185);
+            this.label5.Location = new System.Drawing.Point(3, 147);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 36);
+            this.label5.Size = new System.Drawing.Size(158, 29);
             this.label5.TabIndex = 4;
             this.label5.Text = "Loại hóa đơn";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -154,19 +153,17 @@
             // TextBox_SoHD
             // 
             this.TextBox_SoHD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_SoHD.Location = new System.Drawing.Point(190, 84);
-            this.TextBox_SoHD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TextBox_SoHD.Location = new System.Drawing.Point(167, 63);
             this.TextBox_SoHD.Name = "TextBox_SoHD";
-            this.TextBox_SoHD.Size = new System.Drawing.Size(557, 27);
+            this.TextBox_SoHD.Size = new System.Drawing.Size(487, 23);
             this.TextBox_SoHD.TabIndex = 0;
             // 
             // TextBox_SoTienTT
             // 
             this.TextBox_SoTienTT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_SoTienTT.Location = new System.Drawing.Point(190, 154);
-            this.TextBox_SoTienTT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TextBox_SoTienTT.Location = new System.Drawing.Point(167, 121);
             this.TextBox_SoTienTT.Name = "TextBox_SoTienTT";
-            this.TextBox_SoTienTT.Size = new System.Drawing.Size(557, 27);
+            this.TextBox_SoTienTT.Size = new System.Drawing.Size(487, 23);
             this.TextBox_SoTienTT.TabIndex = 2;
             // 
             // DataGridView_DSHoaDon
@@ -182,13 +179,12 @@
             this.MaKH});
             this.tableLayoutPanel1.SetColumnSpan(this.DataGridView_DSHoaDon, 3);
             this.DataGridView_DSHoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridView_DSHoaDon.Location = new System.Drawing.Point(3, 368);
-            this.DataGridView_DSHoaDon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DataGridView_DSHoaDon.Location = new System.Drawing.Point(3, 288);
             this.DataGridView_DSHoaDon.Name = "DataGridView_DSHoaDon";
             this.DataGridView_DSHoaDon.ReadOnly = true;
             this.DataGridView_DSHoaDon.RowHeadersWidth = 51;
             this.DataGridView_DSHoaDon.RowTemplate.Height = 25;
-            this.DataGridView_DSHoaDon.Size = new System.Drawing.Size(933, 188);
+            this.DataGridView_DSHoaDon.Size = new System.Drawing.Size(816, 129);
             this.DataGridView_DSHoaDon.TabIndex = 1;
             this.DataGridView_DSHoaDon.TabStop = false;
             this.DataGridView_DSHoaDon.SelectionChanged += new System.EventHandler(this.DataGridView_DSHoaDon_SelectionChanged);
@@ -248,22 +244,20 @@
             this.tableLayoutPanel2.Controls.Add(this.Btn_Sua, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.Btn_Xoa, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(190, 301);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(167, 238);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(557, 59);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(487, 44);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
             // Btn_Them
             // 
             this.Btn_Them.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Btn_Them.Location = new System.Drawing.Point(3, 4);
-            this.Btn_Them.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Btn_Them.Location = new System.Drawing.Point(3, 3);
             this.Btn_Them.Name = "Btn_Them";
-            this.Btn_Them.Size = new System.Drawing.Size(179, 51);
+            this.Btn_Them.Size = new System.Drawing.Size(156, 38);
             this.Btn_Them.TabIndex = 0;
             this.Btn_Them.Text = "Thêm";
             this.Btn_Them.UseVisualStyleBackColor = true;
@@ -272,10 +266,9 @@
             // Btn_Sua
             // 
             this.Btn_Sua.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Btn_Sua.Location = new System.Drawing.Point(188, 4);
-            this.Btn_Sua.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Btn_Sua.Location = new System.Drawing.Point(165, 3);
             this.Btn_Sua.Name = "Btn_Sua";
-            this.Btn_Sua.Size = new System.Drawing.Size(179, 51);
+            this.Btn_Sua.Size = new System.Drawing.Size(156, 38);
             this.Btn_Sua.TabIndex = 1;
             this.Btn_Sua.Text = "Sửa";
             this.Btn_Sua.UseVisualStyleBackColor = true;
@@ -284,10 +277,9 @@
             // Btn_Xoa
             // 
             this.Btn_Xoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Btn_Xoa.Location = new System.Drawing.Point(373, 4);
-            this.Btn_Xoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Btn_Xoa.Location = new System.Drawing.Point(327, 3);
             this.Btn_Xoa.Name = "Btn_Xoa";
-            this.Btn_Xoa.Size = new System.Drawing.Size(181, 51);
+            this.Btn_Xoa.Size = new System.Drawing.Size(157, 38);
             this.Btn_Xoa.TabIndex = 2;
             this.Btn_Xoa.Text = "Xóa";
             this.Btn_Xoa.UseVisualStyleBackColor = true;
@@ -296,10 +288,9 @@
             // Btn_ResetInput
             // 
             this.Btn_ResetInput.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Btn_ResetInput.Location = new System.Drawing.Point(753, 261);
-            this.Btn_ResetInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Btn_ResetInput.Location = new System.Drawing.Point(660, 208);
             this.Btn_ResetInput.Name = "Btn_ResetInput";
-            this.Btn_ResetInput.Size = new System.Drawing.Size(86, 32);
+            this.Btn_ResetInput.Size = new System.Drawing.Size(75, 24);
             this.Btn_ResetInput.TabIndex = 6;
             this.Btn_ResetInput.Text = "Làm mới";
             this.Btn_ResetInput.UseVisualStyleBackColor = true;
@@ -309,9 +300,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 221);
+            this.label6.Location = new System.Drawing.Point(3, 176);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(181, 36);
+            this.label6.Size = new System.Drawing.Size(158, 29);
             this.label6.TabIndex = 12;
             this.label6.Text = "Tên khách hàng";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -322,10 +313,9 @@
             this.ComboBox_MaKH.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ComboBox_MaKH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ComboBox_MaKH.FormattingEnabled = true;
-            this.ComboBox_MaKH.Location = new System.Drawing.Point(190, 225);
-            this.ComboBox_MaKH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ComboBox_MaKH.Location = new System.Drawing.Point(167, 179);
             this.ComboBox_MaKH.Name = "ComboBox_MaKH";
-            this.ComboBox_MaKH.Size = new System.Drawing.Size(557, 28);
+            this.ComboBox_MaKH.Size = new System.Drawing.Size(487, 23);
             this.ComboBox_MaKH.TabIndex = 4;
             // 
             // ComboBox_LoaiHD
@@ -334,27 +324,26 @@
             this.ComboBox_LoaiHD.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ComboBox_LoaiHD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ComboBox_LoaiHD.FormattingEnabled = true;
-            this.ComboBox_LoaiHD.Location = new System.Drawing.Point(190, 189);
-            this.ComboBox_LoaiHD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ComboBox_LoaiHD.Location = new System.Drawing.Point(167, 150);
             this.ComboBox_LoaiHD.Name = "ComboBox_LoaiHD";
-            this.ComboBox_LoaiHD.Size = new System.Drawing.Size(557, 28);
+            this.ComboBox_LoaiHD.Size = new System.Drawing.Size(487, 23);
             this.ComboBox_LoaiHD.TabIndex = 3;
             // 
             // DatePicker_Ngay
             // 
             this.DatePicker_Ngay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DatePicker_Ngay.Location = new System.Drawing.Point(190, 119);
-            this.DatePicker_Ngay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DatePicker_Ngay.Location = new System.Drawing.Point(167, 92);
             this.DatePicker_Ngay.Name = "DatePicker_Ngay";
-            this.DatePicker_Ngay.Size = new System.Drawing.Size(557, 27);
+            this.DatePicker_Ngay.Size = new System.Drawing.Size(487, 23);
             this.DatePicker_Ngay.TabIndex = 1;
             // 
             // Btn_ThemHang
             // 
             this.Btn_ThemHang.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Btn_ThemHang.Location = new System.Drawing.Point(190, 260);
+            this.Btn_ThemHang.Location = new System.Drawing.Point(167, 207);
+            this.Btn_ThemHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_ThemHang.Name = "Btn_ThemHang";
-            this.Btn_ThemHang.Size = new System.Drawing.Size(157, 34);
+            this.Btn_ThemHang.Size = new System.Drawing.Size(137, 26);
             this.Btn_ThemHang.TabIndex = 5;
             this.Btn_ThemHang.Text = "Chi tiết hóa đơn";
             this.Btn_ThemHang.UseVisualStyleBackColor = true;
@@ -362,12 +351,13 @@
             // 
             // QLHoaDon
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 560);
+            this.ClientSize = new System.Drawing.Size(822, 420);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "QLHoaDon";
-            this.Text = "Thanh toán";
+            this.Text = "Quản lý hóa đơn";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QLKH_FormClosing);
             this.Load += new System.EventHandler(this.ThanhToan_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

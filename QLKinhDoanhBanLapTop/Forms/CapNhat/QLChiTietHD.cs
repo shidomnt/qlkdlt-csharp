@@ -43,6 +43,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 );
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedChiTietHDChanged += (sender, e) => ExtractFromSelectedChiTietHD();
+            SelectedChiTietHDChanged += (sender, e) => ComboBox_Hang.Enabled = SelectedChiTietHD == null;
 
             var listHang = Context.Hang
                 .Select(hang => new { hang.MaHang, hang.TenHang })

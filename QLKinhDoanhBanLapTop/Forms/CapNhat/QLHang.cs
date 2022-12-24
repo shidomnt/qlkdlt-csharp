@@ -2,12 +2,10 @@
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using System.Data;
-using System.Net.NetworkInformation;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
-    
+
     internal partial class QLHang : Form
     {
         public event EventHandler? SelectedHangChanged;
@@ -35,17 +33,20 @@ namespace QLKinhDoanhBanLapTop.Forms
         {
             InitializeComponent();
             Context = context;
+
+        }
+
+        private async void QLH_Load(object sender, EventArgs e)
+        {
             SavedChangeEventHandler = new(async (sender, e) =>
                 await LoadContextKHToGridView()
                 );
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedHangChanged += (sender, e) => ExtractFromSelectedHang();
+            SelectedHangChanged += (sender, e) => TextBox_MaHang.ReadOnly = SelectedHang != null;
 
             ComboBox_DvTinh.DataSource = Enum.GetValues(typeof(EDvTinh));
-        }
 
-        private async void QLH_Load(object sender, EventArgs e)
-        {
             await LoadContextKHToGridView();
         }
 

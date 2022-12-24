@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using QLKinhDoanhBanLapTop.EF;
-using System.Data.Common;
 using System.Reflection;
 
 namespace QLKinhDoanhBanLapTop
@@ -29,9 +28,7 @@ namespace QLKinhDoanhBanLapTop
 
             context.Database.Migrate();
 
-            AddListenerSavedChanges();
-
-            Application.Run(new FormMDI(context));
+            Application.Run(new QLBanHang(context));
         }
 
         public static bool IsServerConnected()
@@ -56,22 +53,5 @@ namespace QLKinhDoanhBanLapTop
             return (T)x;
         }
 
-        private static void AddListenerSavedChanges(QLKDLTContext context)
-        {
-
-            context.SavedChanges += new EventHandler<SavedChangesEventArgs>((sender, e) =>
-            {
-                MessageBox.Show("Thay đổi đã được lưu vào Database", "Thành công");
-            });
-
-            context.SaveChangesFailed += new EventHandler<SaveChangesFailedEventArgs>((sender, e) =>
-            {
-                MessageBox.Show(
-                    e.Exception?.InnerException?.Message ?? e?.Exception?.Message,
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            });
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using QLKinhDoanhBanLapTop.Helpers;
@@ -36,13 +37,12 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         }
 
-        private void Btn_DSHang_Click(object sender, EventArgs e)
+        private void Btn_ChiTietHD_Click(object sender, EventArgs e)
         {
             if (SelectedHoaDon == null)
             {
-                MessageBox.Show("Hãy chọn 1 hóa đơn để xem chi tiết", "Thông báo",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                var message = "Hãy chọn 1 hóa đơn để xem chi tiết";
+                Notification.Show(message);
                 return;
             }
             var form_ChiTietHD = new QLChiTietHD(SelectedHoaDon.SoHD);
@@ -51,15 +51,17 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private async void Btn_Them_Click(object sender, EventArgs e)
         {
+            var hoaDon = HoaDonMakeFromTextBox();
             try
             {
-                var hoaDon = HoaDonMakeFromTextBox();
                 //Context.ChangeTracker.Clear();
                 Context.HoaDon.Add(hoaDon);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Context.HoaDon.Entry(hoaDon).State = EntityState.Detached;
+                Notification.Show(ex);
             }
         }
 
@@ -70,7 +72,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
             try
             {
-                SelectedHoaDon.SoHD = TextBox_SoHD.Text;
+                //SelectedHoaDon.SoHD = TextBox_SoHD.Text;
                 SelectedHoaDon.NgayPS = DatePicker_Ngay.Value;
                 SelectedHoaDon.SoTienTT = ConvertHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
                 SelectedHoaDon.LoaiHD = (ELoaiHD)ComboBox_LoaiHD.SelectedValue;
@@ -79,9 +81,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 //Context.HoaDon.Update(SelectedHoaDon);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception ex) { Notification.Show(ex); }
         }
 
         private async void Btn_Xoa_Click(object sender, EventArgs e)
@@ -92,9 +92,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.HoaDon.Remove(SelectedHoaDon);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception ex) { Notification.Show(ex); }
         }
 
         private async void QLHoaDon_Load(object sender, EventArgs e)
@@ -106,7 +104,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedHoaDonChanged += (sender, e) => ExtractFromSelectedHoaDon();
             SelectedHoaDonChanged += (sender, e) => TextBox_SoHD.ReadOnly = SelectedHoaDon != null;
-
+            SelectedHoaDonChanged += (sender, e) => Btn_Them.Enabled = SelectedHoaDon == null;
 
             ComboBox_LoaiHD.DataSource = Enum.GetValues(typeof(ELoaiHD));
 

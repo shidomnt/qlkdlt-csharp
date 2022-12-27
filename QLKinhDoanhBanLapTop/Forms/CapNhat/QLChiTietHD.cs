@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using QLKinhDoanhBanLapTop.Helpers;
@@ -46,6 +47,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedChiTietHDChanged += (sender, e) => ExtractFromSelectedChiTietHD();
             SelectedChiTietHDChanged += (sender, e) => ComboBox_Hang.Enabled = SelectedChiTietHD == null;
+            SelectedChiTietHDChanged += (sender, e) => Btn_Them.Enabled = SelectedChiTietHD == null;
 
             TextBox_SoHD.Text = ForSoHD;
 
@@ -60,6 +62,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             ComboBox_Hang.ValueMember = nameof(Hang.MaHang);
 
             await LoadContextChiTietHDToGridView();
+
         }
 
         private async void DataGridView_DSHang_SelectionChanged(object sender, EventArgs e)
@@ -88,8 +91,10 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.ChiTietHD.Add(ChiTietHD);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Context.ChiTietHD.Entry(ChiTietHD).State = EntityState.Detached;
+                Notification.Show(ex);
             }
         }
 
@@ -98,8 +103,8 @@ namespace QLKinhDoanhBanLapTop.Forms
             if (SelectedChiTietHD == null) return;
             _ = int.TryParse(TextBox_SoLuong.Text, out int soLuong);
             var donGia = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text);
-            SelectedChiTietHD.SoHD = TextBox_SoHD.Text;
-            SelectedChiTietHD.MaHang = ComboBox_Hang.SelectedValue.ToString() ?? string.Empty;
+            //SelectedChiTietHD.SoHD = TextBox_SoHD.Text;
+            //SelectedChiTietHD.MaHang = ComboBox_Hang.SelectedValue.ToString() ?? string.Empty;
             SelectedChiTietHD.SoLuong = soLuong;
             SelectedChiTietHD.Gia = donGia;
             try
@@ -107,8 +112,9 @@ namespace QLKinhDoanhBanLapTop.Forms
                 //Context.ChiTietHD.Update(SelectedChiTietHD);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Notification.Show(ex);
             }
         }
 
@@ -120,8 +126,9 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.ChiTietHD.Remove(SelectedChiTietHD);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Notification.Show(ex);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using QLKinhDoanhBanLapTop.Helpers;
@@ -44,6 +45,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 );
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedPhThuChiChanged += (sender, e) => ExtractFromSelectedPhThuChi();
+            SelectedPhThuChiChanged += (sender, e) => Btn_Them.Enabled = SelectedPhThuChi == null;
 
             var listMaKHAndTenKH =
                 Context.KhachHang
@@ -82,8 +84,10 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.PhThuChi.Add(PhThuChi);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Context.PhThuChi.Entry(PhThuChi).State = EntityState.Detached;
+                Notification.Show(ex);
             }
         }
 
@@ -93,7 +97,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             var soTien = ConvertHelpers.DeFormatCurrency(TextBox_SoTien.Text);
             _ = int.TryParse(TextBox_SoPhieu.Text, out int soPhieu);
             _ = Enum.TryParse(ComboBox_LoaiPhieu.SelectedValue.ToString(), out LoaiPh loaiPhieu);
-            SelectedPhThuChi.SoPhieu = soPhieu;
+            //SelectedPhThuChi.SoPhieu = soPhieu;
             SelectedPhThuChi.Ngay = DatePicker_Ngay.Value;
             SelectedPhThuChi.SoTien = soTien;
             SelectedPhThuChi.LoaiPhieu = loaiPhieu;
@@ -104,8 +108,9 @@ namespace QLKinhDoanhBanLapTop.Forms
                 //Context.PhThuChi.Update(SelectedPhThuChi);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Notification.Show(ex);
             }
         }
 
@@ -117,8 +122,9 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.PhThuChi.Remove(SelectedPhThuChi);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Notification.Show(ex);
             }
         }
 

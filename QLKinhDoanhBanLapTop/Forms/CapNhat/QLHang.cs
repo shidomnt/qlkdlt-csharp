@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using QLKinhDoanhBanLapTop.Helpers;
@@ -46,6 +47,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedHangChanged += (sender, e) => ExtractFromSelectedHang();
             SelectedHangChanged += (sender, e) => TextBox_MaHang.ReadOnly = SelectedHang != null;
+            SelectedHangChanged += (sender, e) => Btn_Them.Enabled = SelectedHang == null;
 
             ComboBox_DvTinh.DataSource = Enum.GetValues(typeof(EDvTinh));
 
@@ -76,9 +78,10 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.Hang.Add(Hang);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Loi");
+                Context.Hang.Entry(Hang).State = EntityState.Detached;
+                Notification.Show(ex);
             }
         }
 
@@ -96,9 +99,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 //Context.Hang.Update(SelectedHang);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception ex) { Notification.Show(ex); }
         }
 
         private async void Btn_Xoa_Click(object sender, EventArgs e)
@@ -109,9 +110,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.Hang.Remove(SelectedHang);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception ex) { Notification.Show(ex); }
         }
 
         private void Btn_ResetInput_Click(object sender, EventArgs e)

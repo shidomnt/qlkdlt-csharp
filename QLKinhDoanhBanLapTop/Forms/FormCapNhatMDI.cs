@@ -1,4 +1,5 @@
-﻿using QLKinhDoanhBanLapTop.Helpers;
+﻿using QLKinhDoanhBanLapTop.Classes;
+using QLKinhDoanhBanLapTop.Helpers;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -36,7 +37,12 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void Btn_ChiTietHD_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Vui lòng xem chi tiết hóa đơn tại giao diện Form Hóa đơn", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            var message =
+                "Vui lòng xem chi tiết hóa đơn tại giao diện Form Hóa đơn";
+            var result = Notification.Show(
+                message,
+                MessageBoxButtons.OKCancel
+                );
             if (result == DialogResult.OK)
             {
                 Btn_HoaDon.PerformClick();

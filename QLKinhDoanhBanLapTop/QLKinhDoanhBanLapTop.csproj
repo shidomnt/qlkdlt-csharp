@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <None Remove="Forms\CapNhat\QLChiTietHD.Designer.cs~RF19e7cc2c.TMP" />
+    <None Remove="Forms\CapNhat\QLHang.cs~RF275b60c0.TMP" />
+    <None Remove="Forms\CapNhat\QLKhachHang.Designer.cs~RF2774e902.TMP" />
   </ItemGroup>
 
   <ItemGroup>

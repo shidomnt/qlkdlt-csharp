@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using System.Data;
@@ -44,6 +45,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context.SavedChanges += SavedChangeEventHandler;
             SelectedKhachHangChanged += (sender, e) => ExtractFromSelectedKhachHang();
             SelectedKhachHangChanged += (sender, e) => TextBox_MaKH.ReadOnly = SelectedKhachHang != null;
+            SelectedKhachHangChanged += (sender, e) => Btn_Them.Enabled = SelectedKhachHang == null;
 
             await LoadContextKHToGridView();
         }
@@ -72,8 +74,10 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.KhachHang.Add(khachHang);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Context.KhachHang.Entry(khachHang).State = EntityState.Detached;
+                Notification.Show(ex);
             }
         }
 
@@ -89,9 +93,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 //Context.KhachHang.Update(SelectedKhachHang);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception ex) { Notification.Show(ex); }
         }
 
         private async void Btn_Xoa_Click(object sender, EventArgs e)
@@ -102,9 +104,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 Context.KhachHang.Remove(SelectedKhachHang);
                 await Context.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception ex) { Notification.Show(ex); }
         }
 
         private void Btn_ResetInput_Click(object sender, EventArgs e)

@@ -37,6 +37,11 @@
             this.TextBox_SoHD = new System.Windows.Forms.TextBox();
             this.TextBox_SoTienTT = new System.Windows.Forms.TextBox();
             this.DataGridView_DSHoaDon = new System.Windows.Forms.DataGridView();
+            this.SoHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayPS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoTienTTText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Btn_Them = new System.Windows.Forms.Button();
             this.Btn_Sua = new System.Windows.Forms.Button();
@@ -46,12 +51,7 @@
             this.ComboBox_MaKH = new System.Windows.Forms.ComboBox();
             this.ComboBox_LoaiHD = new System.Windows.Forms.ComboBox();
             this.DatePicker_Ngay = new System.Windows.Forms.DateTimePicker();
-            this.Btn_ThemHang = new System.Windows.Forms.Button();
-            this.SoHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayPS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoTienTTText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Btn_ChiTietHD = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_DSHoaDon)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -77,7 +77,7 @@
             this.tableLayoutPanel1.Controls.Add(this.ComboBox_MaKH, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.ComboBox_LoaiHD, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.DatePicker_Ngay, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.Btn_ThemHang, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.Btn_ChiTietHD, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -191,6 +191,51 @@
             this.DataGridView_DSHoaDon.TabStop = false;
             this.DataGridView_DSHoaDon.SelectionChanged += new System.EventHandler(this.DataGridView_DSHoaDon_SelectionChanged);
             // 
+            // SoHD
+            // 
+            this.SoHD.DataPropertyName = "SoHD";
+            this.SoHD.HeaderText = "Số hóa đơn";
+            this.SoHD.MinimumWidth = 6;
+            this.SoHD.Name = "SoHD";
+            this.SoHD.ReadOnly = true;
+            this.SoHD.Width = 125;
+            // 
+            // NgayPS
+            // 
+            this.NgayPS.DataPropertyName = "NgayPS";
+            this.NgayPS.HeaderText = "Ngày phát sinh";
+            this.NgayPS.MinimumWidth = 6;
+            this.NgayPS.Name = "NgayPS";
+            this.NgayPS.ReadOnly = true;
+            this.NgayPS.Width = 200;
+            // 
+            // SoTienTTText
+            // 
+            this.SoTienTTText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SoTienTTText.DataPropertyName = "SoTienTTText";
+            this.SoTienTTText.HeaderText = "Số tiền TT";
+            this.SoTienTTText.MinimumWidth = 6;
+            this.SoTienTTText.Name = "SoTienTTText";
+            this.SoTienTTText.ReadOnly = true;
+            // 
+            // LoaiHD
+            // 
+            this.LoaiHD.DataPropertyName = "LoaiHD";
+            this.LoaiHD.HeaderText = "Loại hóa đơn";
+            this.LoaiHD.MinimumWidth = 6;
+            this.LoaiHD.Name = "LoaiHD";
+            this.LoaiHD.ReadOnly = true;
+            this.LoaiHD.Width = 150;
+            // 
+            // MaKH
+            // 
+            this.MaKH.DataPropertyName = "MaKH";
+            this.MaKH.HeaderText = "Mã khách hàng";
+            this.MaKH.MinimumWidth = 6;
+            this.MaKH.Name = "MaKH";
+            this.MaKH.ReadOnly = true;
+            this.MaKH.Width = 170;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
@@ -294,62 +339,17 @@
             this.DatePicker_Ngay.Size = new System.Drawing.Size(487, 23);
             this.DatePicker_Ngay.TabIndex = 1;
             // 
-            // Btn_ThemHang
+            // Btn_ChiTietHD
             // 
-            this.Btn_ThemHang.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Btn_ThemHang.Location = new System.Drawing.Point(167, 207);
-            this.Btn_ThemHang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Btn_ThemHang.Name = "Btn_ThemHang";
-            this.Btn_ThemHang.Size = new System.Drawing.Size(137, 26);
-            this.Btn_ThemHang.TabIndex = 5;
-            this.Btn_ThemHang.Text = "Chi tiết hóa đơn";
-            this.Btn_ThemHang.UseVisualStyleBackColor = true;
-            this.Btn_ThemHang.Click += new System.EventHandler(this.Btn_DSHang_Click);
-            // 
-            // SoHD
-            // 
-            this.SoHD.DataPropertyName = "SoHD";
-            this.SoHD.HeaderText = "Số hóa đơn";
-            this.SoHD.MinimumWidth = 6;
-            this.SoHD.Name = "SoHD";
-            this.SoHD.ReadOnly = true;
-            this.SoHD.Width = 125;
-            // 
-            // NgayPS
-            // 
-            this.NgayPS.DataPropertyName = "NgayPS";
-            this.NgayPS.HeaderText = "Ngày phát sinh";
-            this.NgayPS.MinimumWidth = 6;
-            this.NgayPS.Name = "NgayPS";
-            this.NgayPS.ReadOnly = true;
-            this.NgayPS.Width = 200;
-            // 
-            // SoTienTTText
-            // 
-            this.SoTienTTText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SoTienTTText.DataPropertyName = "SoTienTTText";
-            this.SoTienTTText.HeaderText = "Số tiền TT";
-            this.SoTienTTText.MinimumWidth = 6;
-            this.SoTienTTText.Name = "SoTienTTText";
-            this.SoTienTTText.ReadOnly = true;
-            // 
-            // LoaiHD
-            // 
-            this.LoaiHD.DataPropertyName = "LoaiHD";
-            this.LoaiHD.HeaderText = "Loại hóa đơn";
-            this.LoaiHD.MinimumWidth = 6;
-            this.LoaiHD.Name = "LoaiHD";
-            this.LoaiHD.ReadOnly = true;
-            this.LoaiHD.Width = 150;
-            // 
-            // MaKH
-            // 
-            this.MaKH.DataPropertyName = "MaKH";
-            this.MaKH.HeaderText = "Mã khách hàng";
-            this.MaKH.MinimumWidth = 6;
-            this.MaKH.Name = "MaKH";
-            this.MaKH.ReadOnly = true;
-            this.MaKH.Width = 170;
+            this.Btn_ChiTietHD.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Btn_ChiTietHD.Location = new System.Drawing.Point(167, 207);
+            this.Btn_ChiTietHD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_ChiTietHD.Name = "Btn_ChiTietHD";
+            this.Btn_ChiTietHD.Size = new System.Drawing.Size(137, 26);
+            this.Btn_ChiTietHD.TabIndex = 5;
+            this.Btn_ChiTietHD.Text = "Chi tiết hóa đơn";
+            this.Btn_ChiTietHD.UseVisualStyleBackColor = true;
+            this.Btn_ChiTietHD.Click += new System.EventHandler(this.Btn_ChiTietHD_Click);
             // 
             // QLHoaDon
             // 
@@ -390,7 +390,7 @@
         private ComboBox ComboBox_MaKH;
         private ComboBox ComboBox_LoaiHD;
         private DateTimePicker DatePicker_Ngay;
-        private Button Btn_ThemHang;
+        private Button Btn_ChiTietHD;
         private DataGridViewTextBoxColumn SoHD;
         private DataGridViewTextBoxColumn NgayPS;
         private DataGridViewTextBoxColumn SoTienTTText;

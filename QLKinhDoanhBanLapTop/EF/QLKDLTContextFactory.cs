@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.Helpers;
 
 namespace QLKinhDoanhBanLapTop.EF
@@ -10,9 +11,8 @@ namespace QLKinhDoanhBanLapTop.EF
         {
             if (!DatabaseHelpers.IsServerConnected())
             {
-                MessageBox.Show("Không thể kết nối Database, kiểm tra kết nối Database hoặc chỉnh sửa file appsettings.json để thay đổi cấu hình kết nối Database và thử lại",
-                    "Lỗi kết nối Database",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var errorMessage = "Không thể kết nối Database, kiểm tra kết nối Database hoặc chỉnh sửa file appsettings.json để thay đổi cấu hình kết nối Database và thử lại";
+                Notification.Show(new Exception(errorMessage));
                 Application.Exit();
             }
 

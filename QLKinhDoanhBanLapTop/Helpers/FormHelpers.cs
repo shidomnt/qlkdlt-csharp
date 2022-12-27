@@ -1,11 +1,13 @@
-﻿namespace QLKinhDoanhBanLapTop.Helpers
+﻿using QLKinhDoanhBanLapTop.Classes;
+
+namespace QLKinhDoanhBanLapTop.Helpers
 {
     internal static class FormHelpers
     {
         public static void Close<T>(T formInstance) where T : Form
         {
-            var result = MessageBox.Show("Đóng Form ngay?", "Thông báo", MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Information);
+            var message = "Đóng Form ngay?";
+            var result = Notification.Show(message, MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
                 formInstance.Close();

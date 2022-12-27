@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF.Models;
 
 namespace QLKinhDoanhBanLapTop.EF
@@ -9,16 +10,12 @@ namespace QLKinhDoanhBanLapTop.EF
         {
             SavedChanges += new EventHandler<SavedChangesEventArgs>((sender, e) =>
             {
-                MessageBox.Show("Thay đổi đã được lưu vào Database", "Thành công");
+                Notification.Show("Thay đổi đã được lưu vào Database", ENotifycationType.Successful);
             });
 
             SaveChangesFailed += new EventHandler<SaveChangesFailedEventArgs>((sender, e) =>
             {
-                MessageBox.Show(
-                    e.Exception?.InnerException?.Message ?? e?.Exception?.Message,
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                Notification.Show(e.Exception?.InnerException ?? e.Exception);
             });
         }
 

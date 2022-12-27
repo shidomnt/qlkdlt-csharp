@@ -1,6 +1,6 @@
 ﻿namespace QLKinhDoanhBanLapTop.Helpers
 {
-    internal static class CurrencyHelpers
+    internal static class ConvertHelpers
     {
         public static string FormatCurrency(int currency)
         {

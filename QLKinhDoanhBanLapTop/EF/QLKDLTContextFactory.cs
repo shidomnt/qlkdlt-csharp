@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using System.Reflection;
+using QLKinhDoanhBanLapTop.Helpers;
 
 namespace QLKinhDoanhBanLapTop.EF
 {
@@ -9,7 +8,7 @@ namespace QLKinhDoanhBanLapTop.EF
     {
         public QLKDLTContext CreateDbContext(string[] args)
         {
-            if (!Program.IsServerConnected())
+            if (!DatabaseHelpers.IsServerConnected())
             {
                 MessageBox.Show("Không thể kết nối Database, kiểm tra kết nối Database hoặc chỉnh sửa file appsettings.json để thay đổi cấu hình kết nối Database và thử lại",
                     "Lỗi kết nối Database",
@@ -17,9 +16,7 @@ namespace QLKinhDoanhBanLapTop.EF
                 Application.Exit();
             }
 
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!)
-                .AddJsonFile("appsettings.json").Build();
+            var configuration = DatabaseHelpers.GetConfiguration();
 
             var optionsBuilder = new DbContextOptionsBuilder<QLKDLTContext>();
             optionsBuilder

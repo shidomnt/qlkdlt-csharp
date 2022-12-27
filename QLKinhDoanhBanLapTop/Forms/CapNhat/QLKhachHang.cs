@@ -66,7 +66,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Them_Click(object sender, EventArgs e)
         {
             var khachHang = KhachHangMakeFromTextBox();
-            Context.ChangeTracker.Clear();
+            //Context.ChangeTracker.Clear();
             try
             {
                 Context.KhachHang.Add(khachHang);
@@ -80,13 +80,13 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Sua_Click(object sender, EventArgs e)
         {
             if (SelectedKhachHang == null) return;
-            SelectedKhachHang.MaKH = TextBox_MaKH.Text;
+            //SelectedKhachHang.MaKH = TextBox_MaKH.Text;
             SelectedKhachHang.TenKH = TextBox_TenKH.Text;
             SelectedKhachHang.DiaChi = TextBox_DiaChi.Text;
             SelectedKhachHang.SoDt = TextBox_SoDt.Text;
             try
             {
-                Context.KhachHang.Update(SelectedKhachHang);
+                //Context.KhachHang.Update(SelectedKhachHang);
                 await Context.SaveChangesAsync();
             }
             catch (Exception)

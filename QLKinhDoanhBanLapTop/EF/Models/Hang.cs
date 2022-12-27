@@ -31,7 +31,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         {
             get
             {
-                return CurrencyHelpers.FormatCurrency(DonGia);
+                return ConvertHelpers.FormatCurrency(DonGia);
             }
         }
 

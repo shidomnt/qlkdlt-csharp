@@ -70,7 +70,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Them_Click(object sender, EventArgs e)
         {
             var Hang = HangMakeFromTextBox();
-            Context.ChangeTracker.Clear();
+            //Context.ChangeTracker.Clear();
             try
             {
                 Context.Hang.Add(Hang);
@@ -78,21 +78,22 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
             catch (Exception)
             {
+                MessageBox.Show("Loi");
             }
         }
 
         private async void Btn_Sua_Click(object sender, EventArgs e)
         {
             if (SelectedHang == null) return;
-            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
+            var donGia = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             _ = Enum.TryParse(ComboBox_DvTinh.SelectedValue.ToString(), out EDvTinh dvTinh);
-            SelectedHang.MaHang = TextBox_MaHang.Text;
+            //SelectedHang.MaHang = TextBox_MaHang.Text;
             SelectedHang.TenHang = TextBox_TenHang.Text;
             SelectedHang.DvTinh = dvTinh.ToString();
             SelectedHang.DonGia = donGia;
             try
             {
-                Context.Hang.Update(SelectedHang);
+                //Context.Hang.Update(SelectedHang);
                 await Context.SaveChangesAsync();
             }
             catch (Exception)
@@ -120,7 +121,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private Hang HangMakeFromTextBox()
         {
-            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
+            var donGia = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             _ = Enum.TryParse(ComboBox_DvTinh.SelectedValue.ToString(), out EDvTinh dvTinh);
             Hang Hang = new()
             {
@@ -157,7 +158,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             TextBox_MaHang.Text = SelectedHang?.MaHang;
             TextBox_TenHang.Text = SelectedHang?.TenHang;
             ComboBox_DvTinh.SelectedIndex = dvTinhIndex > 0 ? dvTinhIndex : ((int)EDvTinh.Kg);
-            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(SelectedHang?.DonGia ?? 0);
+            TextBox_DonGia.Text = ConvertHelpers.FormatCurrency(SelectedHang?.DonGia ?? 0);
         }
 
         private void QLKH_FormClosing(object sender, FormClosingEventArgs e)
@@ -175,13 +176,13 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void TextBox_DonGia_Enter(object sender, EventArgs e)
         {
-            TextBox_DonGia.Text = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text).ToString();
+            TextBox_DonGia.Text = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text).ToString();
         }
 
         private void TextBox_DonGia_Leave(object sender, EventArgs e)
         {
             _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
-            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(donGia);
+            TextBox_DonGia.Text = ConvertHelpers.FormatCurrency(donGia);
         }
     }
 }

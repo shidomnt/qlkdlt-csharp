@@ -1,8 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using QLKinhDoanhBanLapTop.EF;
-using System.Reflection;
 
 namespace QLKinhDoanhBanLapTop
 {
@@ -25,28 +22,6 @@ namespace QLKinhDoanhBanLapTop
 
 
             Application.Run(new QLBanHang());
-        }
-
-        public static bool IsServerConnected()
-        {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!)
-                .AddJsonFile("appsettings.json").Build();
-
-            using var l_oConnection = new SqlConnection(configuration["ConnectionStrings:DefaultConnection"]);
-            try
-            {
-                l_oConnection.Open();
-                return true;
-            }
-            catch (SqlException)
-            {
-                return false;
-            }
-        }
-        public static T Cast<T>(T typeHolder, object x)
-        {
-            return (T)x;
         }
 
     }

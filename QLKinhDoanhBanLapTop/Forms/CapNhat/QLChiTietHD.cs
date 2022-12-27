@@ -47,20 +47,22 @@ namespace QLKinhDoanhBanLapTop.Forms
             SelectedChiTietHDChanged += (sender, e) => ExtractFromSelectedChiTietHD();
             SelectedChiTietHDChanged += (sender, e) => ComboBox_Hang.Enabled = SelectedChiTietHD == null;
 
-            var listHang = Context.Hang
+            TextBox_SoHD.Text = ForSoHD;
+
+            TextBox_SoLuong.Text = "1";
+
+            var listHang = await Context.Hang
                 .Select(hang => new { hang.MaHang, hang.TenHang, hang.DonGia })
-                .ToList();
+                .ToListAsync();
 
             ComboBox_Hang.DataSource = listHang;
             ComboBox_Hang.DisplayMember = nameof(Hang.TenHang);
             ComboBox_Hang.ValueMember = nameof(Hang.MaHang);
 
-            TextBox_SoHD.Text = ForSoHD;
-
             await LoadContextChiTietHDToGridView();
         }
 
-        private void DataGridView_DSHang_SelectionChanged(object sender, EventArgs e)
+        private async void DataGridView_DSHang_SelectionChanged(object sender, EventArgs e)
         {
             var rowCount = DataGridView_ChiTietHD.SelectedRows.Count;
             if (rowCount == 0)
@@ -72,15 +74,15 @@ namespace QLKinhDoanhBanLapTop.Forms
             var selectedRow = DataGridView_ChiTietHD.SelectedRows[0];
             var selectedSoHD = selectedRow.Cells[nameof(HoaDon.SoHD)].Value.ToString();
             var selectedMaHang = selectedRow.Cells[nameof(Hang.MaHang)].Value.ToString();
-            SelectedChiTietHD = Context.ChiTietHD
+            SelectedChiTietHD = await Context.ChiTietHD
                 .Where(chiTietHD => chiTietHD.SoHD == selectedSoHD && chiTietHD.MaHang == selectedMaHang)
-                .First();
+                .FirstOrDefaultAsync();
         }
 
         private async void Btn_Them_Click(object sender, EventArgs e)
         {
             var ChiTietHD = ChiTietHDMakeFromTextBox();
-            Context.ChangeTracker.Clear();
+            //Context.ChangeTracker.Clear();
             try
             {
                 Context.ChiTietHD.Add(ChiTietHD);
@@ -95,14 +97,14 @@ namespace QLKinhDoanhBanLapTop.Forms
         {
             if (SelectedChiTietHD == null) return;
             _ = int.TryParse(TextBox_SoLuong.Text, out int soLuong);
-            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
+            var donGia = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             SelectedChiTietHD.SoHD = TextBox_SoHD.Text;
             SelectedChiTietHD.MaHang = ComboBox_Hang.SelectedValue.ToString() ?? string.Empty;
             SelectedChiTietHD.SoLuong = soLuong;
             SelectedChiTietHD.Gia = donGia;
             try
             {
-                Context.ChiTietHD.Update(SelectedChiTietHD);
+                //Context.ChiTietHD.Update(SelectedChiTietHD);
                 await Context.SaveChangesAsync();
             }
             catch (Exception)
@@ -131,7 +133,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private ChiTietHD ChiTietHDMakeFromTextBox()
         {
             _ = int.TryParse(TextBox_SoLuong.Text, out int soLuong);
-            var donGia = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text);
+            var donGia = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text);
             ChiTietHD ChiTietHD = new()
             {
                 SoHD = TextBox_SoHD.Text,
@@ -169,7 +171,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             TextBox_SoHD.Text = SelectedChiTietHD.SoHD;
             ComboBox_Hang.SelectedValue = SelectedChiTietHD.MaHang;
             TextBox_SoLuong.Text = SelectedChiTietHD.SoLuong.ToString();
-            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(SelectedChiTietHD.Gia);
+            TextBox_DonGia.Text = ConvertHelpers.FormatCurrency(SelectedChiTietHD.Gia);
         }
 
         private void QLChiTietHD_FormClosing(object sender, FormClosingEventArgs e)
@@ -183,20 +185,20 @@ namespace QLKinhDoanhBanLapTop.Forms
                 return;
             }
             var typeHolder = new { MaHang = "", TenHang = "", DonGia = 0 };
-            var selectedHang = Program.Cast(typeHolder, combobox.SelectedItem);
+            var selectedHang = TypeHelpers.Cast(typeHolder, combobox.SelectedItem);
             var donGiaGoc = selectedHang.DonGia;
-            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(donGiaGoc);
+            TextBox_DonGia.Text = ConvertHelpers.FormatCurrency(donGiaGoc);
         }
 
         private void TextBox_DonGia_Enter(object sender, EventArgs e)
         {
-            TextBox_DonGia.Text = CurrencyHelpers.DeFormatCurrency(TextBox_DonGia.Text).ToString();
+            TextBox_DonGia.Text = ConvertHelpers.DeFormatCurrency(TextBox_DonGia.Text).ToString();
         }
 
         private void TextBox_DonGia_Leave(object sender, EventArgs e)
         {
             _ = int.TryParse(TextBox_DonGia.Text, out int donGia);
-            TextBox_DonGia.Text = CurrencyHelpers.FormatCurrency(donGia);
+            TextBox_DonGia.Text = ConvertHelpers.FormatCurrency(donGia);
         }
     }
 }

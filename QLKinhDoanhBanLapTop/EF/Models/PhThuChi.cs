@@ -24,7 +24,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         {
             get
             {
-                return CurrencyHelpers.FormatCurrency(SoTien);
+                return ConvertHelpers.FormatCurrency(SoTien);
             }
         }
 

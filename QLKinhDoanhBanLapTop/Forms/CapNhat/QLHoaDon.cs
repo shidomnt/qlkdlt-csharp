@@ -54,7 +54,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             try
             {
                 var hoaDon = HoaDonMakeFromTextBox();
-                Context.ChangeTracker.Clear();
+                //Context.ChangeTracker.Clear();
                 Context.HoaDon.Add(hoaDon);
                 await Context.SaveChangesAsync();
             }
@@ -72,11 +72,11 @@ namespace QLKinhDoanhBanLapTop.Forms
             {
                 SelectedHoaDon.SoHD = TextBox_SoHD.Text;
                 SelectedHoaDon.NgayPS = DatePicker_Ngay.Value;
-                SelectedHoaDon.SoTienTT = CurrencyHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
+                SelectedHoaDon.SoTienTT = ConvertHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
                 SelectedHoaDon.LoaiHD = (ELoaiHD)ComboBox_LoaiHD.SelectedValue;
                 SelectedHoaDon.MaKH = (string)ComboBox_MaKH.SelectedValue;
 
-                Context.HoaDon.Update(SelectedHoaDon);
+                //Context.HoaDon.Update(SelectedHoaDon);
                 await Context.SaveChangesAsync();
             }
             catch (Exception)
@@ -149,7 +149,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private HoaDon HoaDonMakeFromTextBox()
         {
             _ = Enum.TryParse(ComboBox_LoaiHD.SelectedValue.ToString(), out ELoaiHD loaiHD);
-            var soTienTT = CurrencyHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
+            var soTienTT = ConvertHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
             var hoaDon = new HoaDon()
             {
                 SoHD = TextBox_SoHD.Text,
@@ -190,7 +190,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             {
                 TextBox_SoHD.Text = SelectedHoaDon.SoHD;
                 DatePicker_Ngay.Value = SelectedHoaDon.NgayPS;
-                TextBox_SoTienTT.Text = CurrencyHelpers.FormatCurrency(SelectedHoaDon.SoTienTT);
+                TextBox_SoTienTT.Text = ConvertHelpers.FormatCurrency(SelectedHoaDon.SoTienTT);
                 ComboBox_LoaiHD.SelectedValue = SelectedHoaDon.LoaiHD.ToString();
                 ComboBox_MaKH.SelectedValue = SelectedHoaDon.MaKH;
 
@@ -203,13 +203,13 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void TextBox_SoTienTT_Enter(object sender, EventArgs e)
         {
-            TextBox_SoTienTT.Text = CurrencyHelpers.DeFormatCurrency(TextBox_SoTienTT.Text).ToString();
+            TextBox_SoTienTT.Text = ConvertHelpers.DeFormatCurrency(TextBox_SoTienTT.Text).ToString();
         }
 
         private void TextBox_SoTienTT_Leave(object sender, EventArgs e)
         {
             _ = int.TryParse(TextBox_SoTienTT.Text, out int soTienTT);
-            TextBox_SoTienTT.Text = CurrencyHelpers.FormatCurrency(soTienTT);
+            TextBox_SoTienTT.Text = ConvertHelpers.FormatCurrency(soTienTT);
         }
     }
 }

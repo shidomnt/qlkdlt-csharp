@@ -32,7 +32,7 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         {
             get
             {
-                return CurrencyHelpers.FormatCurrency(Gia);
+                return ConvertHelpers.FormatCurrency(Gia);
             }
         }
 

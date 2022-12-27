@@ -76,7 +76,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Them_Click(object sender, EventArgs e)
         {
             var PhThuChi = PhThuChiMakeFromTextBox();
-            Context.ChangeTracker.Clear();
+            //Context.ChangeTracker.Clear();
             try
             {
                 Context.PhThuChi.Add(PhThuChi);
@@ -90,7 +90,7 @@ namespace QLKinhDoanhBanLapTop.Forms
         private async void Btn_Sua_Click(object sender, EventArgs e)
         {
             if (SelectedPhThuChi == null) return;
-            var soTien = CurrencyHelpers.DeFormatCurrency(TextBox_SoTien.Text);
+            var soTien = ConvertHelpers.DeFormatCurrency(TextBox_SoTien.Text);
             _ = int.TryParse(TextBox_SoPhieu.Text, out int soPhieu);
             _ = Enum.TryParse(ComboBox_LoaiPhieu.SelectedValue.ToString(), out LoaiPh loaiPhieu);
             SelectedPhThuChi.SoPhieu = soPhieu;
@@ -101,7 +101,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
             try
             {
-                Context.PhThuChi.Update(SelectedPhThuChi);
+                //Context.PhThuChi.Update(SelectedPhThuChi);
                 await Context.SaveChangesAsync();
             }
             catch (Exception)
@@ -129,7 +129,7 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private PhThuChi PhThuChiMakeFromTextBox()
         {
-            var soTien = CurrencyHelpers.DeFormatCurrency(TextBox_SoTien.Text);
+            var soTien = ConvertHelpers.DeFormatCurrency(TextBox_SoTien.Text);
             _ = int.TryParse(TextBox_SoPhieu.Text, out int soPhieu);
             _ = Enum.TryParse(ComboBox_LoaiPhieu.SelectedValue.ToString(), out LoaiPh loaiPhieu);
             PhThuChi PhThuChi = new()
@@ -171,7 +171,7 @@ namespace QLKinhDoanhBanLapTop.Forms
                 var selectedPhThuChi_LoaiPhieu = SelectedPhThuChi?.LoaiPhieu;
                 TextBox_SoPhieu.Text = SelectedPhThuChi?.SoPhieu.ToString();
                 DatePicker_Ngay.Value = SelectedPhThuChi?.Ngay ?? DateTime.Now;
-                TextBox_SoTien.Text = CurrencyHelpers.FormatCurrency(SelectedPhThuChi?.SoTien ?? 0);
+                TextBox_SoTien.Text = ConvertHelpers.FormatCurrency(SelectedPhThuChi?.SoTien ?? 0);
                 var check = selectedPhThuChi_LoaiPhieu.ToString() == string.Empty;
                 ComboBox_LoaiPhieu.SelectedValue =
                     check ? LoaiPh.Chi.ToString() : selectedPhThuChi_LoaiPhieu;
@@ -188,13 +188,13 @@ namespace QLKinhDoanhBanLapTop.Forms
 
         private void TextBox_SoTien_Enter(object sender, EventArgs e)
         {
-            TextBox_SoTien.Text = CurrencyHelpers.DeFormatCurrency(TextBox_SoTien.Text).ToString();
+            TextBox_SoTien.Text = ConvertHelpers.DeFormatCurrency(TextBox_SoTien.Text).ToString();
         }
 
         private void TextBox_SoTien_Leave(object sender, EventArgs e)
         {
             _ = int.TryParse(TextBox_SoTien.Text, out int soTienTT);
-            TextBox_SoTien.Text = CurrencyHelpers.FormatCurrency(soTienTT);
+            TextBox_SoTien.Text = ConvertHelpers.FormatCurrency(soTienTT);
         }
     }
 }

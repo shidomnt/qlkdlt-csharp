@@ -3,6 +3,7 @@ using QLKinhDoanhBanLapTop.Classes;
 using QLKinhDoanhBanLapTop.EF;
 using QLKinhDoanhBanLapTop.EF.Models;
 using QLKinhDoanhBanLapTop.Helpers;
+using System.ComponentModel;
 
 namespace QLKinhDoanhBanLapTop.Forms
 {
@@ -13,6 +14,8 @@ namespace QLKinhDoanhBanLapTop.Forms
         private ChiTietHD? _selectedChiTietHD = null;
 
         public QLKDLTContext Context { get; set; }
+
+        public BindingList<ChiTietHD> DSChiTietHD { get; set; }
 
         public string ForSoHD { get; set; }
 
@@ -37,14 +40,17 @@ namespace QLKinhDoanhBanLapTop.Forms
             Context =
                 new QLKDLTContextFactory().CreateDbContext(Array.Empty<string>());
             ForSoHD = soHD;
+            DSChiTietHD = new BindingList<ChiTietHD>(
+                Context.ChiTietHD.Where(chiTietHD => chiTietHD.SoHD == ForSoHD).ToList()
+                );
         }
 
         private async void QLChiTietHD_Load(object sender, EventArgs e)
         {
-            SavedChangeEventHandler = new(async (sender, e) =>
-                await LoadContextChiTietHDToGridView()
-                );
-            Context.SavedChanges += SavedChangeEventHandler;
+            //SavedChangeEventHandler = new(async (sender, e) =>
+            //    await LoadContextChiTietHDToGridView()
+            //    );
+            //Context.SavedChanges += SavedChangeEventHandler;
             SelectedChiTietHDChanged += (sender, e) => ExtractFromSelectedChiTietHD();
             SelectedChiTietHDChanged += (sender, e) => ComboBox_Hang.Enabled = SelectedChiTietHD == null;
             SelectedChiTietHDChanged += (sender, e) => Btn_Them.Enabled = SelectedChiTietHD == null;
@@ -61,7 +67,9 @@ namespace QLKinhDoanhBanLapTop.Forms
             ComboBox_Hang.DisplayMember = nameof(Hang.TenHang);
             ComboBox_Hang.ValueMember = nameof(Hang.MaHang);
 
-            await LoadContextChiTietHDToGridView();
+            DataGridView_ChiTietHD.DataSource = DSChiTietHD;
+
+            //await LoadContextChiTietHDToGridView();
 
         }
 
@@ -82,14 +90,15 @@ namespace QLKinhDoanhBanLapTop.Forms
                 .FirstOrDefaultAsync();
         }
 
-        private async void Btn_Them_Click(object sender, EventArgs e)
+        private /*async*/ void Btn_Them_Click(object sender, EventArgs e)
         {
             var ChiTietHD = ChiTietHDMakeFromTextBox();
             //Context.ChangeTracker.Clear();
             try
             {
-                Context.ChiTietHD.Add(ChiTietHD);
-                await Context.SaveChangesAsync();
+                DSChiTietHD.Add(ChiTietHD);
+                //Context.ChiTietHD.Add(ChiTietHD);
+                //await Context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -98,7 +107,7 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
         }
 
-        private async void Btn_Sua_Click(object sender, EventArgs e)
+        private /*async*/ void Btn_Sua_Click(object sender, EventArgs e)
         {
             if (SelectedChiTietHD == null) return;
             _ = int.TryParse(TextBox_SoLuong.Text, out int soLuong);
@@ -109,8 +118,17 @@ namespace QLKinhDoanhBanLapTop.Forms
             SelectedChiTietHD.Gia = donGia;
             try
             {
+                var chitietHD = DSChiTietHD.FirstOrDefault(chiTietHD => chiTietHD.SoHD == SelectedChiTietHD.SoHD
+                && chiTietHD.MaHang == SelectedChiTietHD.MaHang);
+                if (chitietHD != null) chitietHD = new ChiTietHD()
+                {
+                    SoHD = SelectedChiTietHD.SoHD,
+                    MaHang = SelectedChiTietHD.MaHang,
+                    Gia = SelectedChiTietHD.Gia,
+                    SoLuong = SelectedChiTietHD.SoLuong,
+                };
                 //Context.ChiTietHD.Update(SelectedChiTietHD);
-                await Context.SaveChangesAsync();
+                //await Context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -118,13 +136,16 @@ namespace QLKinhDoanhBanLapTop.Forms
             }
         }
 
-        private async void Btn_Xoa_Click(object sender, EventArgs e)
+        private /*async*/ void Btn_Xoa_Click(object sender, EventArgs e)
         {
             try
             {
                 if (SelectedChiTietHD == null) return;
-                Context.ChiTietHD.Remove(SelectedChiTietHD);
-                await Context.SaveChangesAsync();
+                var chiTietHD = DSChiTietHD.FirstOrDefault(chiTietHD => chiTietHD.SoHD == SelectedChiTietHD.SoHD
+                && chiTietHD.MaHang == SelectedChiTietHD.MaHang);
+                if (chiTietHD != null) DSChiTietHD.Remove(chiTietHD);
+                //Context.ChiTietHD.Remove(SelectedChiTietHD);
+                //await Context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -181,8 +202,11 @@ namespace QLKinhDoanhBanLapTop.Forms
             TextBox_DonGia.Text = ConvertHelpers.FormatCurrency(SelectedChiTietHD.Gia);
         }
 
+        //private void QLChiTietHD_FormClosing(object sender, FormClosingEventArgs e)
+        //    => Context.SavedChanges -= SavedChangeEventHandler;
+
         private void QLChiTietHD_FormClosing(object sender, FormClosingEventArgs e)
-            => Context.SavedChanges -= SavedChangeEventHandler;
+        { }
 
         private void ComboBox_Hang_SelectedIndexChanged(object sender, EventArgs e)
         {

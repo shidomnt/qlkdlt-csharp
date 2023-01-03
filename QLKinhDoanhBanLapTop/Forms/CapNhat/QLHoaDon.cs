@@ -186,11 +186,10 @@ namespace QLKinhDoanhBanLapTop.Forms
                 return;
             try
             {
-                var selectedIndex = ComboBox_LoaiHD.FindStringExact(SelectedHoaDon.LoaiHD.ToString());
                 TextBox_SoHD.Text = SelectedHoaDon.SoHD;
                 DatePicker_Ngay.Value = SelectedHoaDon.NgayPS;
                 TextBox_SoTienTT.Text = ConvertHelpers.FormatCurrency(SelectedHoaDon.SoTienTT);
-                ComboBox_LoaiHD.SelectedIndex = selectedIndex;
+                ComboBox_LoaiHD.SelectedValue = SelectedHoaDon.LoaiHD.ToString();
                 ComboBox_MaKH.SelectedValue = SelectedHoaDon.MaKH;
 
             }

@@ -54,7 +54,6 @@ namespace QLKinhDoanhBanLapTop.Forms
             var hoaDon = HoaDonMakeFromTextBox();
             try
             {
-                //Context.ChangeTracker.Clear();
                 Context.HoaDon.Add(hoaDon);
                 await Context.SaveChangesAsync();
             }
@@ -72,13 +71,11 @@ namespace QLKinhDoanhBanLapTop.Forms
 
             try
             {
-                //SelectedHoaDon.SoHD = TextBox_SoHD.Text;
                 SelectedHoaDon.NgayPS = DatePicker_Ngay.Value;
                 SelectedHoaDon.SoTienTT = ConvertHelpers.DeFormatCurrency(TextBox_SoTienTT.Text);
                 SelectedHoaDon.LoaiHD = (ELoaiHD)ComboBox_LoaiHD.SelectedValue;
                 SelectedHoaDon.MaKH = (string)ComboBox_MaKH.SelectedValue;
 
-                //Context.HoaDon.Update(SelectedHoaDon);
                 await Context.SaveChangesAsync();
             }
             catch (Exception ex) { Notification.Show(ex); }
@@ -186,10 +183,11 @@ namespace QLKinhDoanhBanLapTop.Forms
                 return;
             try
             {
+                var selectedIndex = ComboBox_LoaiHD.FindStringExact(SelectedHoaDon.LoaiHD.ToString());
                 TextBox_SoHD.Text = SelectedHoaDon.SoHD;
                 DatePicker_Ngay.Value = SelectedHoaDon.NgayPS;
                 TextBox_SoTienTT.Text = ConvertHelpers.FormatCurrency(SelectedHoaDon.SoTienTT);
-                ComboBox_LoaiHD.SelectedValue = SelectedHoaDon.LoaiHD.ToString();
+                ComboBox_LoaiHD.SelectedIndex = selectedIndex;
                 ComboBox_MaKH.SelectedValue = SelectedHoaDon.MaKH;
 
             }

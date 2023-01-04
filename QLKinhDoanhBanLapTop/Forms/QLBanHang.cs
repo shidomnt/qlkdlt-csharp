@@ -20,5 +20,11 @@ namespace QLKinhDoanhBanLapTop
         {
             FormHelpers.Close(this);
         }
+
+        private void Btn_XuLy_Click(object sender, EventArgs e)
+        {
+            var formXuLy = new FormXuLyMDI();
+            formXuLy.ShowDialog();
+        }
     }
 }

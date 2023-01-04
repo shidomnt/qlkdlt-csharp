@@ -112,6 +112,7 @@
             this.Btn_XuLy.TabIndex = 2;
             this.Btn_XuLy.Text = "Xử lý";
             this.Btn_XuLy.UseVisualStyleBackColor = true;
+            this.Btn_XuLy.Click += new System.EventHandler(this.Btn_XuLy_Click);
             // 
             // Btn_BaoCao
             // 

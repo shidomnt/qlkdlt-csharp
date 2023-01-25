@@ -42,6 +42,20 @@ namespace QLKinhDoanhBanLapTop.EF.Models
         [Browsable(false)]
         public Hang HangNavigator { get; set; } = null!;
 
+        [NotMapped]
+        [Browsable(false)]
+        [DisplayName("Thành tiền")]
+        public int ThanhTien
+        {
+            get => Gia * SoLuong;
+        }
+
+        [NotMapped]
+        [DisplayName("Thành tiền")]
+        public string ThanhTienText
+        {
+            get => ConvertHelpers.FormatCurrency(ThanhTien);
+        }
 
     }
 }

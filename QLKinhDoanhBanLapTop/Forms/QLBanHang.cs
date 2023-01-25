@@ -1,5 +1,6 @@
 ﻿using QLKinhDoanhBanLapTop.Forms;
 using QLKinhDoanhBanLapTop.Helpers;
+using QLKinhDoanhBanLapTop.Reports;
 
 namespace QLKinhDoanhBanLapTop
 {
@@ -25,6 +26,12 @@ namespace QLKinhDoanhBanLapTop
         {
             var formXuLy = new FormXuLyMDI();
             formXuLy.ShowDialog();
+        }
+
+        private void Btn_BaoCao_Click(object sender, EventArgs e)
+        {
+            var report = new ReportChiTietXuatHang();
+            report.Show();
         }
     }
 }

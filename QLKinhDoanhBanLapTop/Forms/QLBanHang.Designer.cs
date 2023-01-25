@@ -123,6 +123,7 @@
             this.Btn_BaoCao.TabIndex = 3;
             this.Btn_BaoCao.Text = "Báo cáo";
             this.Btn_BaoCao.UseVisualStyleBackColor = true;
+            this.Btn_BaoCao.Click += new System.EventHandler(this.Btn_BaoCao_Click);
             // 
             // Btn_KetThuc
             // 

@@ -28,5 +28,13 @@
     <Compile Update="Forms\QLBanHang.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Reports\ReportChiTietXuatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Datasets\DataSet.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
 </Project>

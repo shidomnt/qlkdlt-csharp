@@ -24,5 +24,8 @@ namespace QLKinhDoanhBanLapTop.EF
 
             return new QLKDLTContext(optionsBuilder.Options);
         }
+
+        public QLKDLTContext CreateDbContext()
+        => CreateDbContext(Array.Empty<string>());
     }
 }

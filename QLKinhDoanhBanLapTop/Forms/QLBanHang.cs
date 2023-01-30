@@ -30,8 +30,8 @@ namespace QLKinhDoanhBanLapTop
 
         private void Btn_BaoCao_Click(object sender, EventArgs e)
         {
-            var report = new ReportChiTietXuatHang();
-            report.Show();
+            var formBaoCaoXuatHang = new FormBaoCaoXuatHang();
+            formBaoCaoXuatHang.Show();
         }
     }
 }

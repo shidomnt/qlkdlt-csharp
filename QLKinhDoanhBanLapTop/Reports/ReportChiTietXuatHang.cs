@@ -18,7 +18,7 @@ namespace QLKinhDoanhBanLapTop.Reports
     {
         private readonly ReportViewer reportViewer;
 
-        public ReportChiTietXuatHang()
+        public ReportChiTietXuatHang(string maKH, DateTime ngayBD, DateTime ngayKT)
         {
             Text = "Report viewer";
             WindowState = FormWindowState.Maximized;
@@ -26,11 +26,15 @@ namespace QLKinhDoanhBanLapTop.Reports
             reportViewer.Dock = DockStyle.Fill;
             Controls.Add(reportViewer);
             Context = new QLKDLTContextFactory().CreateDbContext();
+            MaKH = maKH;
+            NgayBD = ngayBD;
+            NgayKT = ngayKT;
         }
 
         public QLKDLTContext Context { get; set; }
-
-        public string MaKH { get; set; } = "KH1";
+        public string MaKH { get; }
+        public DateTime NgayBD { get; }
+        public DateTime NgayKT { get; }
 
         protected override async void OnLoad(EventArgs e)
         {
@@ -43,6 +47,8 @@ namespace QLKinhDoanhBanLapTop.Reports
 
             var source = await Context.ChiTietHD
                 .Where(e => e.HoaDonNavigator.MaKH == MaKH)
+                .Where(e => e.HoaDonNavigator.NgayPS >= NgayBD)
+                .Where(e => e.HoaDonNavigator.NgayPS <= NgayKT)
                 .Select(e => new
                 {
                     e.SoHD,
@@ -54,10 +60,7 @@ namespace QLKinhDoanhBanLapTop.Reports
                     e.HoaDonNavigator.NgayPS,
                 }).ToListAsync();
 
-            var ngayBD = new DateTime(2022, 12, 1);
-            var ngayKT = DateTime.Now;
-
-            ReportHelper.Load(reportViewer.LocalReport, khachHang.TenKH, source, ngayBD, ngayKT);
+            ReportHelper.Load(reportViewer.LocalReport, khachHang.TenKH, source, NgayBD, NgayKT);
             reportViewer.RefreshReport();
             //base.OnLoad(e);
         }

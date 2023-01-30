@@ -25,6 +25,9 @@
     <Compile Update="Forms\GetParameterValue.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormBaoCaoXuatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\QLBanHang.cs">
       <SubType>Form</SubType>
     </Compile>
